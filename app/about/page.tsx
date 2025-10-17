@@ -41,7 +41,7 @@ export default function AboutPage() {
               <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 rounded-3xl blur-2xl" />
               <div className="relative rounded-3xl shadow-2xl w-full h-auto glow-effect overflow-hidden">
                 <img
-                  src="/professional-led-logo-projector-illuminating-a-bus.jpg"
+                  src="/IMG-20251016-WA0142.jpg"
                   alt="Projecteur LED professionnel"
                   className="w-full h-auto object-cover"
                 />

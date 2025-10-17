@@ -100,12 +100,12 @@ export function Hero() {
                 loop
                 muted
                 playsInline
-                poster="/professional-led-logo-projector-illuminating-a-bus.jpg"
+                poster="/IMG-20251016-WA0145.jpg"
               >
                 <source src="/hero-video.mp4" type="video/mp4" />
                 {/* Fallback image if video doesn't load */}
                 <img
-                  src="/professional-led-logo-projector-illuminating-a-bus.jpg"
+                  src="/IMG-20251016-WA0145.jpg"
                   alt="Projecteur LED illuminant un logo"
                   className="w-full h-auto object-cover"
                 />

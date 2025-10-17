@@ -29,27 +29,69 @@ export function ContactForm({ preselectedProduct }: ContactFormProps) {
     e.preventDefault()
     setIsSubmitting(true)
 
-    // Get the selected product details
-    const productId = preselectedProduct || selectedProduct
-    const product = products.find((p) => p.id === productId)
+    try {
+      // Get form data
+      const formData = new FormData(e.currentTarget)
+      const productId = preselectedProduct || selectedProduct
+      const product = products.find((p) => p.id === productId)
 
-    // Track Lead event in Facebook Pixel
-    if (product) {
-      trackLead(product.name, product.id, product.priceHT)
-    }
+      // Prepare email data
+      const emailData = {
+        fullName: formData.get('fullName'),
+        company: formData.get('company'),
+        phone: formData.get('phone'),
+        address: formData.get('address'),
+        message: formData.get('message'),
+        product: product?.name || 'Non spécifié',
+        quantity: formData.get('quantity'),
+        additionalProducts: additionalProducts.map(id => 
+          products.find(p => p.id === id)?.name || id
+        ),
+      }
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1000))
+      // Send email via API
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(emailData),
+      })
 
-    toast({
-      title: "Demande envoyée !",
-      description: "Nous vous contactons dans les plus brefs délais.",
-    })
+      const result = await response.json()
+      
+      if (!response.ok) {
+        console.error('Email API error:', result)
+        throw new Error(result.details || 'Failed to send email')
+      }
 
-    setIsSubmitting(false)
-    ;(e.target as HTMLFormElement).reset()
-    if (!preselectedProduct) {
-      setSelectedProduct("")
+      console.log('Email sent successfully:', result)
+
+      // Track Lead event in Facebook Pixel
+      if (product) {
+        trackLead(product.name, product.id, product.priceHT)
+      }
+
+      toast({
+        title: "✅ Demande envoyée !",
+        description: "Nous vous contactons dans les plus brefs délais.",
+      })
+
+      // Reset form
+      ;(e.target as HTMLFormElement).reset()
+      if (!preselectedProduct) {
+        setSelectedProduct("")
+      }
+      setAdditionalProducts([])
+    } catch (error: any) {
+      console.error('Submission error:', error)
+      toast({
+        title: "❌ Erreur d'envoi",
+        description: error.message || "Une erreur est survenue. Veuillez nous appeler au 0607056637.",
+        variant: "destructive",
+      })
+    } finally {
+      setIsSubmitting(false)
     }
   }
 

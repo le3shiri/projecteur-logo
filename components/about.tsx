@@ -10,7 +10,7 @@ export function About() {
             <div className="absolute -inset-4 bg-gradient-to-br from-primary/30 to-accent/30 rounded-3xl blur-2xl" />
             <div className="relative rounded-2xl shadow-2xl w-full h-auto glow-effect overflow-hidden">
               <img
-                src="/led-logo-projector-displaying-company-logo-on-buil.jpg"
+                src="/IMG-20251016-WA0140.jpg"
                 alt="Projecteur LED affichant un logo sur une façade"
                 className="w-full h-auto object-cover"
               />
