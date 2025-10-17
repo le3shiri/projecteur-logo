@@ -9,7 +9,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { useToast } from "@/hooks/use-toast"
-import { Phone, Mail, Plus } from "lucide-react"
+import { Phone, Mail, Plus, Upload, X, Image as ImageIcon } from "lucide-react"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Checkbox } from "@/components/ui/checkbox"
 import { products } from "@/lib/products"
@@ -24,6 +24,48 @@ export function ContactForm({ preselectedProduct }: ContactFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [selectedProduct, setSelectedProduct] = useState(preselectedProduct || "")
   const [additionalProducts, setAdditionalProducts] = useState<string[]>([])
+  const [logoFile, setLogoFile] = useState<File | null>(null)
+  const [logoPreview, setLogoPreview] = useState<string | null>(null)
+
+  const handleLogoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (file) {
+      // Validate file type
+      const validTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/svg+xml', 'image/webp']
+      if (!validTypes.includes(file.type)) {
+        toast({
+          title: "❌ Format invalide",
+          description: "Veuillez télécharger une image (JPG, PNG, GIF, SVG, WEBP)",
+          variant: "destructive",
+        })
+        return
+      }
+
+      // Validate file size (max 5MB)
+      if (file.size > 5 * 1024 * 1024) {
+        toast({
+          title: "❌ Fichier trop volumineux",
+          description: "La taille maximale est de 5 MB",
+          variant: "destructive",
+        })
+        return
+      }
+
+      setLogoFile(file)
+      
+      // Create preview
+      const reader = new FileReader()
+      reader.onloadend = () => {
+        setLogoPreview(reader.result as string)
+      }
+      reader.readAsDataURL(file)
+    }
+  }
+
+  const removeLogoFile = () => {
+    setLogoFile(null)
+    setLogoPreview(null)
+  }
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -34,6 +76,21 @@ export function ContactForm({ preselectedProduct }: ContactFormProps) {
       const formData = new FormData(e.currentTarget)
       const productId = preselectedProduct || selectedProduct
       const product = products.find((p) => p.id === productId)
+
+      // Convert logo to base64 if exists
+      let logoBase64 = null
+      let logoFileName = null
+      let logoFileType = null
+      
+      if (logoFile) {
+        const reader = new FileReader()
+        logoBase64 = await new Promise<string>((resolve) => {
+          reader.onloadend = () => resolve(reader.result as string)
+          reader.readAsDataURL(logoFile)
+        })
+        logoFileName = logoFile.name
+        logoFileType = logoFile.type
+      }
 
       // Prepare email data
       const emailData = {
@@ -47,6 +104,9 @@ export function ContactForm({ preselectedProduct }: ContactFormProps) {
         additionalProducts: additionalProducts.map(id => 
           products.find(p => p.id === id)?.name || id
         ),
+        logo: logoBase64,
+        logoFileName: logoFileName,
+        logoFileType: logoFileType,
       }
 
       // Send email via API
@@ -83,6 +143,8 @@ export function ContactForm({ preselectedProduct }: ContactFormProps) {
         setSelectedProduct("")
       }
       setAdditionalProducts([])
+      setLogoFile(null)
+      setLogoPreview(null)
     } catch (error: any) {
       console.error('Submission error:', error)
       toast({
@@ -283,6 +345,72 @@ export function ContactForm({ preselectedProduct }: ContactFormProps) {
                   rows={4}
                   className="border-2 relative z-10"
                 />
+              </div>
+
+              {/* Logo Upload Section */}
+              <div className="space-y-4 p-6 bg-primary/5 rounded-lg border-2 border-primary/20">
+                <div className="flex items-center gap-2">
+                  <ImageIcon className="h-5 w-5 text-primary" />
+                  <Label className="text-lg font-semibold">Télécharger votre logo</Label>
+                </div>
+                <p className="text-sm text-muted-foreground">
+                  Envoyez-nous votre logo pour que nous puissions créer votre projecteur personnalisé (JPG, PNG, GIF, SVG, WEBP - Max 5MB)
+                </p>
+                
+                {!logoFile ? (
+                  <div className="relative">
+                    <input
+                      type="file"
+                      id="logo-upload"
+                      accept="image/jpeg,image/jpg,image/png,image/gif,image/svg+xml,image/webp"
+                      onChange={handleLogoChange}
+                      className="hidden"
+                    />
+                    <Label
+                      htmlFor="logo-upload"
+                      className="flex flex-col items-center justify-center w-full h-40 border-2 border-dashed border-primary/30 rounded-lg cursor-pointer hover:border-primary hover:bg-primary/5 transition-all"
+                    >
+                      <Upload className="h-10 w-10 text-primary mb-2" />
+                      <span className="text-sm font-medium text-primary">Cliquez pour télécharger</span>
+                      <span className="text-xs text-muted-foreground mt-1">ou glissez-déposez votre fichier</span>
+                    </Label>
+                  </div>
+                ) : (
+                  <div className="relative p-4 bg-background rounded-lg border-2 border-primary/30">
+                    <Button
+                      type="button"
+                      variant="ghost"
+                      size="icon"
+                      className="absolute top-2 right-2 h-8 w-8 rounded-full bg-destructive/10 hover:bg-destructive/20 text-destructive"
+                      onClick={removeLogoFile}
+                    >
+                      <X className="h-4 w-4" />
+                    </Button>
+                    <div className="flex items-center gap-4">
+                      {logoPreview && (
+                        <div className="w-24 h-24 rounded-lg overflow-hidden border-2 border-primary/20 flex items-center justify-center bg-muted">
+                          <img
+                            src={logoPreview}
+                            alt="Logo preview"
+                            className="max-w-full max-h-full object-contain"
+                          />
+                        </div>
+                      )}
+                      <div className="flex-1">
+                        <p className="text-sm font-semibold text-foreground">{logoFile.name}</p>
+                        <p className="text-xs text-muted-foreground mt-1">
+                          {(logoFile.size / 1024).toFixed(2)} KB • {logoFile.type.split('/')[1].toUpperCase()}
+                        </p>
+                        <div className="flex items-center gap-2 mt-2">
+                          <div className="h-1 flex-1 bg-primary/20 rounded-full overflow-hidden">
+                            <div className="h-full w-full bg-primary rounded-full" />
+                          </div>
+                          <span className="text-xs font-medium text-primary">✓</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
 
               <Button type="submit" className="w-full gradient-glow text-lg" size="lg" disabled={isSubmitting}>

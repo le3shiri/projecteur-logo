@@ -51,6 +51,7 @@ The email will include:
 - Clean text format with all order details
 - Customer contact information
 - Full timestamp in French format
+- 🎨 Customer logo attachment (if uploaded)
 
 ## Why Web3Forms?
 
@@ -68,3 +69,4 @@ The email will include:
 - ✅ Form submissions dashboard
 - ✅ No credit card required
 - ✅ No limits on free tier
+- ✅ File attachments support (logos up to 5MB)
