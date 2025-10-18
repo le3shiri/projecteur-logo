@@ -1,7 +1,7 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Phone, Zap } from "lucide-react"
+import { ArrowRight, Phone, Zap, MessageCircle } from "lucide-react"
 import Link from "next/link"
 import { useState, useEffect } from "react"
 import { trackInitiateCheckout } from "@/lib/facebook-pixel"
@@ -51,7 +51,7 @@ export function FloatingCTA() {
           >
             <Link href="/contact" className="flex items-center gap-3 cursor-pointer" onClick={handleCTAClick}>
               <Zap className="h-6 w-6 animate-pulse" />
-              <span className="font-extrabold">Demander maintenant</span>
+              <span className="font-extrabold">Commander maintenant</span>
               <ArrowRight className="h-6 w-6 group-hover:translate-x-2 transition-transform duration-300" />
             </Link>
           </Button>
@@ -77,6 +77,35 @@ export function FloatingCTA() {
 
           {/* Pulse Ring */}
           <div className="absolute inset-0 rounded-full border-2 border-accent/40 animate-pulse" />
+        </div>
+      </div>
+
+      {/* WhatsApp Floating Button */}
+      <div className="fixed bottom-28 right-6 z-50 animate-in slide-in-from-bottom-4 duration-1000 floating-animation">
+        <div className="relative group">
+          {/* WhatsApp Glow Effect */}
+          <div className="absolute -inset-2 bg-gradient-to-r from-green-500 to-green-400 rounded-full blur-lg opacity-60 group-hover:opacity-90 animate-pulse" />
+          
+          {/* WhatsApp Button */}
+          <Button
+            size="icon"
+            className="relative bg-gradient-to-r from-green-500 to-green-400 hover:from-green-600 hover:to-green-500 text-white rounded-full shadow-xl hover:shadow-2xl transform hover:scale-110 transition-all duration-300 w-16 h-16 z-10"
+            asChild
+          >
+            <a 
+              href="https://wa.me/212607056637" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="flex items-center justify-center"
+              title="Contactez-nous sur WhatsApp"
+            >
+              <MessageCircle className="h-8 w-8" />
+            </a>
+          </Button>
+
+          {/* WhatsApp Ripple Animation */}
+          <div className="absolute inset-0 rounded-full border-2 border-green-400/50 animate-ping -z-10 pointer-events-none" />
+          <div className="absolute inset-2 rounded-full border border-green-300/40 animate-ping animation-delay-150 -z-10 pointer-events-none" />
         </div>
       </div>
 
