@@ -153,11 +153,11 @@ export default function AboutPage() {
               <CardContent className="p-8 text-center">
                 <div className="relative mb-6">
                   <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-accent/20 to-accent/10 flex items-center justify-center mx-auto group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 floating-animation">
-                    <Lightbulb className="h-10 w-10 text-accent-foreground group-hover:animate-pulse" />
+                    <Lightbulb className="h-10 w-10 text-primary group-hover:animate-pulse" />
                   </div>
                   <div className="absolute -inset-2 bg-accent/20 rounded-full blur-xl opacity-0 group-hover:opacity-60 transition-opacity duration-500" />
                 </div>
-                <CardTitle className="text-2xl mb-4 group-hover:text-accent-foreground transition-colors">Innovation</CardTitle>
+                <CardTitle className="text-2xl mb-4 group-hover:text-primary transition-colors">Innovation</CardTitle>
                 <p className="text-muted-foreground text-sm leading-relaxed">
                   Technologies LED de pointe pour des solutions performantes
                 </p>
@@ -185,11 +185,11 @@ export default function AboutPage() {
               <CardContent className="p-8 text-center">
                 <div className="relative mb-6">
                   <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-accent/20 to-accent/10 flex items-center justify-center mx-auto group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 floating-animation">
-                    <Rocket className="h-10 w-10 text-accent-foreground group-hover:animate-pulse" />
+                    <Rocket className="h-10 w-10 text-primary group-hover:animate-pulse" />
                   </div>
                   <div className="absolute -inset-2 bg-accent/20 rounded-full blur-xl opacity-0 group-hover:opacity-60 transition-opacity duration-500" />
                 </div>
-                <CardTitle className="text-2xl mb-4 group-hover:text-accent-foreground transition-colors">Rapidité</CardTitle>
+                <CardTitle className="text-2xl mb-4 group-hover:text-primary transition-colors">Rapidité</CardTitle>
                 <p className="text-muted-foreground text-sm leading-relaxed">
                   Livraison express 48h partout au Maroc
                 </p>
@@ -217,11 +217,11 @@ export default function AboutPage() {
               <CardContent className="p-8 text-center">
                 <div className="relative mb-6">
                   <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-accent/20 to-accent/10 flex items-center justify-center mx-auto group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 floating-animation">
-                    <Target className="h-10 w-10 text-accent-foreground group-hover:animate-pulse" />
+                    <Target className="h-10 w-10 text-primary group-hover:animate-pulse" />
                   </div>
                   <div className="absolute -inset-2 bg-accent/20 rounded-full blur-xl opacity-0 group-hover:opacity-60 transition-opacity duration-500" />
                 </div>
-                <CardTitle className="text-2xl mb-4 group-hover:text-accent-foreground transition-colors">Précision</CardTitle>
+                <CardTitle className="text-2xl mb-4 group-hover:text-primary transition-colors">Précision</CardTitle>
                 <p className="text-muted-foreground text-sm leading-relaxed">
                   Projection parfaite de votre logo avec netteté optimale
                 </p>
