@@ -2,7 +2,7 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Target, Users, Award, Zap, Heart, Shield, ArrowRight } from "lucide-react"
+import { Target, Users, Award, Zap, Heart, Shield, ArrowRight, Sparkles, Star, Lightbulb, CheckCircle, Rocket, Crown } from "lucide-react"
 import Link from "next/link"
 
 export default function AboutPage() {
@@ -111,102 +111,130 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Our Values Section */}
-      <section className="py-20 px-4 bg-gradient-to-b from-background to-muted/30 relative overflow-hidden">
+      {/* Our Values Section - Enhanced */}
+      <section className="py-24 px-4 bg-gradient-to-b from-background to-muted/30 relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-primary/5 to-transparent -z-10" />
+        <div className="absolute top-20 right-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl -z-10 animate-pulse" />
+        <div className="absolute bottom-20 left-10 w-96 h-96 bg-accent/10 rounded-full blur-3xl -z-10 animate-pulse" />
+        
         <div className="container mx-auto max-w-7xl">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold mb-6">
-              Nos <span className="text-gradient">Valeurs</span>
+          <div className="text-center mb-20">
+            <div className="inline-flex items-center gap-3 px-6 py-3 bg-primary/10 rounded-full border-2 border-primary/20 mb-8">
+              <Sparkles className="h-5 w-5 text-primary animate-pulse" />
+              <span className="text-base font-medium text-primary">Nos Valeurs Fondamentales</span>
+            </div>
+            <h2 className="text-4xl md:text-6xl font-bold mb-6">
+              Ce qui nous <span className="text-gradient">Définit</span>
             </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Les principes qui guident notre travail et notre engagement envers nos clients
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Les valeurs qui guident chaque décision et chaque interaction
             </p>
           </div>
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <Card className="border-2 card-hover group bg-background/50 backdrop-blur-sm">
-              <CardHeader>
-                <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform pulse-glow">
-                  <Target className="h-8 w-8 text-primary" />
+            {/* Excellence */}
+            <Card className="border-2 card-hover group bg-background/60 backdrop-blur-sm hover:bg-background/80 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10">
+              <CardContent className="p-8 text-center">
+                <div className="relative mb-6">
+                  <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center mx-auto group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 floating-animation">
+                    <Crown className="h-10 w-10 text-primary group-hover:animate-pulse" />
+                  </div>
+                  <div className="absolute -inset-2 bg-primary/20 rounded-full blur-xl opacity-0 group-hover:opacity-60 transition-opacity duration-500" />
                 </div>
-                <CardTitle className="text-xl">Excellence</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground leading-relaxed">
-                  Nous visons l'excellence dans chaque projecteur que nous livrons, garantissant une qualité professionnelle irréprochable.
+                <CardTitle className="text-2xl mb-4 group-hover:text-primary transition-colors">Excellence</CardTitle>
+                <p className="text-muted-foreground text-sm leading-relaxed">
+                  Qualité professionnelle irréprochable dans chaque projecteur
                 </p>
               </CardContent>
             </Card>
 
-            <Card className="border-2 card-hover group bg-background/50 backdrop-blur-sm">
-              <CardHeader>
-                <div className="w-16 h-16 rounded-2xl bg-accent/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform pulse-glow">
-                  <Users className="h-8 w-8 text-accent-foreground" />
+            {/* Innovation */}
+            <Card className="border-2 card-hover group bg-background/60 backdrop-blur-sm hover:bg-background/80 transition-all duration-500 hover:shadow-2xl hover:shadow-accent/10">
+              <CardContent className="p-8 text-center">
+                <div className="relative mb-6">
+                  <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-accent/20 to-accent/10 flex items-center justify-center mx-auto group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 floating-animation">
+                    <Lightbulb className="h-10 w-10 text-accent-foreground group-hover:animate-pulse" />
+                  </div>
+                  <div className="absolute -inset-2 bg-accent/20 rounded-full blur-xl opacity-0 group-hover:opacity-60 transition-opacity duration-500" />
                 </div>
-                <CardTitle className="text-xl">Service Client</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground leading-relaxed">
-                  Notre devise : aucun client insatisfait. Nous sommes disponibles 7j/7 pour vous accompagner dans votre projet.
+                <CardTitle className="text-2xl mb-4 group-hover:text-accent-foreground transition-colors">Innovation</CardTitle>
+                <p className="text-muted-foreground text-sm leading-relaxed">
+                  Technologies LED de pointe pour des solutions performantes
                 </p>
               </CardContent>
             </Card>
 
-            <Card className="border-2 card-hover group bg-background/50 backdrop-blur-sm">
-              <CardHeader>
-                <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform pulse-glow">
-                  <Award className="h-8 w-8 text-primary" />
+            {/* Service Client */}
+            <Card className="border-2 card-hover group bg-background/60 backdrop-blur-sm hover:bg-background/80 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10">
+              <CardContent className="p-8 text-center">
+                <div className="relative mb-6">
+                  <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center mx-auto group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 floating-animation">
+                    <Heart className="h-10 w-10 text-primary group-hover:animate-pulse" />
+                  </div>
+                  <div className="absolute -inset-2 bg-primary/20 rounded-full blur-xl opacity-0 group-hover:opacity-60 transition-opacity duration-500" />
                 </div>
-                <CardTitle className="text-xl">Qualité</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground leading-relaxed">
-                  Nos projecteurs sont fabriqués avec des composants de haute qualité pour une durée de vie de 10 ans minimum.
+                <CardTitle className="text-2xl mb-4 group-hover:text-primary transition-colors">Satisfaction</CardTitle>
+                <p className="text-muted-foreground text-sm leading-relaxed">
+                  Aucun client insatisfait - Disponibles 7j/7
                 </p>
               </CardContent>
             </Card>
 
-            <Card className="border-2 card-hover group bg-background/50 backdrop-blur-sm">
-              <CardHeader>
-                <div className="w-16 h-16 rounded-2xl bg-accent/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform pulse-glow">
-                  <Zap className="h-8 w-8 text-accent-foreground" />
+            {/* Rapidité */}
+            <Card className="border-2 card-hover group bg-background/60 backdrop-blur-sm hover:bg-background/80 transition-all duration-500 hover:shadow-2xl hover:shadow-accent/10">
+              <CardContent className="p-8 text-center">
+                <div className="relative mb-6">
+                  <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-accent/20 to-accent/10 flex items-center justify-center mx-auto group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 floating-animation">
+                    <Rocket className="h-10 w-10 text-accent-foreground group-hover:animate-pulse" />
+                  </div>
+                  <div className="absolute -inset-2 bg-accent/20 rounded-full blur-xl opacity-0 group-hover:opacity-60 transition-opacity duration-500" />
                 </div>
-                <CardTitle className="text-xl">Innovation</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground leading-relaxed">
-                  Nous utilisons les dernières technologies LED pour offrir des solutions d'éclairage économiques et performantes.
+                <CardTitle className="text-2xl mb-4 group-hover:text-accent-foreground transition-colors">Rapidité</CardTitle>
+                <p className="text-muted-foreground text-sm leading-relaxed">
+                  Livraison express 48h partout au Maroc
                 </p>
               </CardContent>
             </Card>
 
-            <Card className="border-2 card-hover group bg-background/50 backdrop-blur-sm">
-              <CardHeader>
-                <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform pulse-glow">
-                  <Heart className="h-8 w-8 text-primary" />
+            {/* Fiabilité */}
+            <Card className="border-2 card-hover group bg-background/60 backdrop-blur-sm hover:bg-background/80 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10">
+              <CardContent className="p-8 text-center">
+                <div className="relative mb-6">
+                  <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center mx-auto group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 floating-animation">
+                    <Shield className="h-10 w-10 text-primary group-hover:animate-pulse" />
+                  </div>
+                  <div className="absolute -inset-2 bg-primary/20 rounded-full blur-xl opacity-0 group-hover:opacity-60 transition-opacity duration-500" />
                 </div>
-                <CardTitle className="text-xl">Passion</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground leading-relaxed">
-                  Nous sommes passionnés par l'éclairage LED et nous mettons tout notre cœur dans chaque projet client.
+                <CardTitle className="text-2xl mb-4 group-hover:text-primary transition-colors">Fiabilité</CardTitle>
+                <p className="text-muted-foreground text-sm leading-relaxed">
+                  Garantie 10 ans et support technique complet
                 </p>
               </CardContent>
             </Card>
 
-            <Card className="border-2 card-hover group bg-background/50 backdrop-blur-sm">
-              <CardHeader>
-                <div className="w-16 h-16 rounded-2xl bg-accent/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform pulse-glow">
-                  <Shield className="h-8 w-8 text-accent-foreground" />
+            {/* Précision */}
+            <Card className="border-2 card-hover group bg-background/60 backdrop-blur-sm hover:bg-background/80 transition-all duration-500 hover:shadow-2xl hover:shadow-accent/10">
+              <CardContent className="p-8 text-center">
+                <div className="relative mb-6">
+                  <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-accent/20 to-accent/10 flex items-center justify-center mx-auto group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 floating-animation">
+                    <Target className="h-10 w-10 text-accent-foreground group-hover:animate-pulse" />
+                  </div>
+                  <div className="absolute -inset-2 bg-accent/20 rounded-full blur-xl opacity-0 group-hover:opacity-60 transition-opacity duration-500" />
                 </div>
-                <CardTitle className="text-xl">Fiabilité</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground leading-relaxed">
-                  Livraison gratuite, garantie satisfaction à 100%, et support technique disponible pour tous nos clients.
+                <CardTitle className="text-2xl mb-4 group-hover:text-accent-foreground transition-colors">Précision</CardTitle>
+                <p className="text-muted-foreground text-sm leading-relaxed">
+                  Projection parfaite de votre logo avec netteté optimale
                 </p>
               </CardContent>
             </Card>
+          </div>
+
+          {/* Bottom CTA */}
+          <div className="text-center mt-16">
+            <div className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-primary/10 to-accent/10 rounded-full border border-primary/20">
+              <CheckCircle className="h-5 w-5 text-primary" />
+              <span className="text-sm font-medium">Ces valeurs guident chaque projet que nous réalisons</span>
+            </div>
           </div>
         </div>
       </section>

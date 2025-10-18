@@ -121,8 +121,8 @@ export function Hero() {
 
             {/* Floating Stats */}
             <div className="absolute -bottom-6 -left-6 bg-background/95 backdrop-blur-md border-2 border-primary/20 rounded-2xl p-4 shadow-xl">
-              <p className="text-3xl font-bold text-gradient">90%</p>
-              <p className="text-sm text-muted-foreground">Visibilité Accrue</p>
+              <p className="text-3xl font-bold text-gradient">+ 90%</p>
+              <p className="text-sm text-muted-foreground">Visibilité </p>
             </div>
             <div className="absolute -top-6 -right-6 bg-background/95 backdrop-blur-md border-2 border-accent/20 rounded-2xl p-4 shadow-xl">
               <p className="text-3xl font-bold text-gradient">48h</p>

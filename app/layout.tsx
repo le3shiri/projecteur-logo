@@ -4,6 +4,7 @@ import { Geist, Geist_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import Script from "next/script"
 import { CookieConsent } from "@/components/cookie-consent"
+import { FloatingCTA } from "@/components/floating-cta"
 import { Toaster } from "@/components/ui/toaster"
 import "./globals.css"
 
@@ -51,6 +52,7 @@ export default function RootLayout({
       </head>
       <body className={`font-sans antialiased`}>
         {children}
+        <FloatingCTA />
         <CookieConsent />
         <Toaster />
         <Analytics />

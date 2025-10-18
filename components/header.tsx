@@ -70,7 +70,7 @@ export function Header() {
               className="ml-2 border-2 border-primary/30 hover:border-primary hover:bg-primary/10 transition-all duration-300 text-foreground hover:text-foreground"
               asChild
             >
-              <a href="tel:0607056637" className="flex items-center gap-2 text-foreground hover:text-foreground">
+              <a href="https://wa.me/212607056637" className="flex items-center gap-2 text-foreground hover:text-foreground">
                 <Phone className="h-4 w-4" />
                 <span className="hidden xl:inline">0607056637</span>
               </a>
@@ -122,7 +122,7 @@ export function Header() {
               
               {/* Mobile Phone Button */}
               <a 
-                href="tel:0607056637" 
+                href="https://wa.me/212607056637" 
                 className="px-6 py-3 text-base font-semibold text-foreground hover:text-foreground hover:bg-primary/10 transition-all rounded-lg mx-2 flex items-center gap-2 border-2 border-primary/30 mt-2"
               >
                 <Phone className="h-5 w-5" />
