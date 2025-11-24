@@ -92,40 +92,55 @@ export function ContactForm({ preselectedProduct }: ContactFormProps) {
         logoFileType = logoFile.type
       }
 
-      // Prepare email data
-      const emailData = {
-        fullName: formData.get('fullName'),
-        company: formData.get('company'),
-        phone: formData.get('phone'),
-        address: formData.get('address'),
-        message: formData.get('message'),
+      // Prepare data for Web3Forms
+      const fullName = formData.get('fullName') as string
+      const company = formData.get('company') as string
+      const phone = formData.get('phone') as string
+      const address = formData.get('address') as string
+      const message = (formData.get('message') as string) || ''
+      const quantity = formData.get('quantity') as string
+
+      const web3formsData: any = {
+        access_key: '0d416089-cc65-4d17-9147-a47b2f73a9e4',
+        subject: `🎯 Nouvelle Commande - ${(product?.name || 'Non spécifié')} (${fullName})`,
+        email: 'Projecteurlogo1@gmail.com',
+        replyto: 'Projecteurlogo1@gmail.com',
+        fullName,
+        company,
+        phone,
+        address,
+        message,
         product: product?.name || 'Non spécifié',
-        quantity: formData.get('quantity'),
+        quantity,
         additionalProducts: additionalProducts.map(id => 
           products.find(p => p.id === id)?.name || id
         ),
-        logo: logoBase64,
-        logoFileName: logoFileName,
-        logoFileType: logoFileType,
       }
 
-      // Send email via API
-      const response = await fetch('/api/send-email', {
+      // Include logo-related info as extra fields
+      if (logoBase64 && logoFileName && logoFileType) {
+        web3formsData.logo_preview = logoBase64
+        web3formsData.logo_file_name = logoFileName
+        web3formsData.logo_file_type = logoFileType
+      }
+
+      const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Accept': 'application/json',
         },
-        body: JSON.stringify(emailData),
+        body: JSON.stringify(web3formsData),
       })
 
       const result = await response.json()
-      
-      if (!response.ok) {
-        console.error('Email API error:', result)
-        throw new Error(result.details || 'Failed to send email')
+
+      if (!response.ok || !result?.success) {
+        console.error('Web3Forms error:', result)
+        throw new Error(result?.body?.message || 'Failed to send email')
       }
 
-      console.log('Email sent successfully:', result)
+      console.log('Email sent successfully via Web3Forms:', result)
 
       // Track Lead event in Facebook Pixel
       if (product) {
