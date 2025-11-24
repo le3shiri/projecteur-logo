@@ -56,7 +56,7 @@ ${message || 'Aucun message'}
       from_name: `${fullName} - ${company}`,
       email: 'Projecteurlogo1@gmail.com',
       message: emailMessage,
-      to_email: 'Projecteurlogo1@gmail.com',
+      to_email: 'Anasahaddad788@gmail.com',
     }
 
     // Add logo attachment if provided
