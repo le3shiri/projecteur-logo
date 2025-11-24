@@ -74,19 +74,21 @@ ${message || 'Aucun message'}
       body: JSON.stringify(emailPayload),
     })
 
-    let result: any
+    const rawBody = await response.text()
+    console.log('Web3Forms raw response:', rawBody)
+
+    let result: any = null
     try {
-      result = await response.json()
+      result = JSON.parse(rawBody)
     } catch (parseError) {
-      const text = await response.text()
-      console.error('Web3Forms non-JSON response:', text)
-      throw new Error('Web3Forms returned an invalid response')
+      console.error('Web3Forms response is not valid JSON')
     }
 
     if (!response.ok || !result?.success) {
       console.error('Web3Forms error response:', {
         status: response.status,
         result,
+        rawBody,
       })
       throw new Error(result?.message || 'Failed to send email')
     }
