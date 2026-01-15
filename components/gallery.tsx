@@ -1,196 +1,121 @@
 "use client"
 
 import { useState } from "react"
-import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { ChevronLeft, ChevronRight } from "lucide-react"
+import { Dialog, DialogContent, DialogTrigger, DialogTitle } from "@/components/ui/dialog"
+import { ZoomIn } from "lucide-react"
 
-const projects = [
-  {
-    id: 1,
-    image: "/IMG-20251016-WA0138.jpg",
-    title: "Projection Logo Entreprise",
-    description: "Logo d'entreprise projeté avec netteté",
-  },
-  {
-    id: 2,
-    image: "/IMG-20251016-WA0140.jpg",
-    title: "Signalétique Lumineuse",
-    description: "Projection de logo pour signalétique nocturne",
-  },
-  {
-    id: 3,
-    image: "/IMG-20251016-WA0142.jpg",
-    title: "Projection Événementielle",
-    description: "Logo projeté lors d'un événement professionnel",
-  },
-  {
-    id: 4,
-    image: "/IMG-20251016-WA0143.jpg",
-    title: "Vitrine Commerciale",
-    description: "Projecteur compact pour vitrine de magasin",
-  },
-  {
-    id: 5,
-    image: "/IMG-20251016-WA0144.jpg",
-    title: "Façade Moderne",
-    description: "Projection sur façade de bâtiment moderne",
-  },
-  {
-    id: 6,
-    image: "/IMG-20251016-WA0145.jpg",
-    title: "Installation Rotatif",
-    description: "Projecteur rotatif pour effet dynamique",
-  },
-  {
-    id: 7,
-    image: "/IMG-20251016-WA0147.jpg",
-    title: "Logo Haute Définition",
-    description: "Projection nette et précise de logo",
-  },
-  {
-    id: 8,
-    image: "/IMG-20251016-WA0148.jpg",
-    title: "Éclairage Commercial",
-    description: "Mise en lumière de commerce",
-  },
-  {
-    id: 9,
-    image: "/IMG-20251016-WA0149.jpg",
-    title: "Installation Murale",
-    description: "Projecteur fixe sur mur extérieur",
-  },
-  {
-    id: 10,
-    image: "/IMG-20251016-WA0150.jpg",
-    title: "Projection Publicitaire",
-    description: "Logo publicitaire projeté en grand format",
-  },
-  {
-    id: 11,
-    image: "/IMG-20251016-WA0154.jpg",
-    title: "Façade Illuminée",
-    description: "Bâtiment mis en valeur par projection",
-  },
-  {
-    id: 12,
-    image: "/IMG-20251016-WA0155.jpg",
-    title: "Logo Entreprise",
-    description: "Projection de logo corporate",
-  },
-  {
-    id: 13,
-    image: "/IMG-20251016-WA0156.jpg",
-    title: "Installation Technique",
-    description: "Montage professionnel de projecteur",
-  },
-  {
-    id: 14,
-    image: "/IMG-20251016-WA0159.jpg",
-    title: "Réalisation Client",
-    description: "Installation personnalisée pour client",
-  },
+const galleryImages = [
+  "/IMG-20251017-WA0016.jpg",
+  "/IMG-20251017-WA0019.jpg",
+  "/IMG-20251017-WA0021.jpg",
+  "/IMG-20251017-WA0023.jpg",
+  "/IMG-20251017-WA0025.jpg",
+  "/IMG-20251017-WA0026.jpg",
+  "/IMG-20251017-WA0027.jpg",
+  "/IMG-20251017-WA0028.jpg",
+  "/IMG-20251017-WA0029.jpg",
+  "/IMG-20251017-WA0030.jpg",
+  "/IMG-20251017-WA0031.jpg",
+  "/IMG-20251017-WA0032.jpg",
+  "/IMG-20251017-WA0033.jpg",
+  "/IMG-20251017-WA0034.jpg",
+  "/IMG-20251017-WA0035.jpg",
+  "/IMG-20251017-WA0036.jpg",
+  "/IMG-20251017-WA0037.jpg",
+  "/IMG-20251017-WA0038.jpg",
+  "/IMG-20251017-WA0039.jpg",
+  "/IMG-20251017-WA0040.jpg",
+  "/IMG-20251017-WA0041.jpg",
+  "/IMG-20251017-WA0042.jpg",
+  "/IMG-20251017-WA0043.jpg",
+  "/IMG-20251017-WA0044.jpg",
+  "/IMG-20251017-WA0045.jpg",
+  "/IMG-20251017-WA0046.jpg",
+  "/IMG-20251017-WA0047.jpg",
+  "/IMG-20251017-WA0048.jpg",
+  "/IMG-20251017-WA0049.jpg",
+  "/IMG-20251017-WA0050.jpg",
+  "/IMG-20251017-WA0051.jpg",
+  "/IMG-20251017-WA0052.jpg",
+  "/IMG-20251017-WA0053.jpg",
+  "/IMG-20251017-WA0054.jpg",
+  "/IMG-20251017-WA0055.jpg",
+  "/IMG-20251017-WA0056.jpg",
+  "/IMG-20251017-WA0057.jpg",
+  "/IMG-20251017-WA0059.jpg",
+  "/IMG-20251017-WA0060.jpg",
 ]
 
 export function Gallery() {
-  const [currentIndex, setCurrentIndex] = useState(0)
+  const [visibleCount, setVisibleCount] = useState(12)
 
-  const nextSlide = () => {
-    setCurrentIndex((prev) => (prev + 1) % projects.length)
-  }
-
-  const prevSlide = () => {
-    setCurrentIndex((prev) => (prev - 1 + projects.length) % projects.length)
-  }
-
-  const goToSlide = (index: number) => {
-    setCurrentIndex(index)
+  const showMore = () => {
+    setVisibleCount((prev) => Math.min(prev + 12, galleryImages.length))
   }
 
   return (
-    <section className="py-20 px-4 bg-gradient-to-b from-background to-muted/30 relative overflow-hidden">
-      <div className="absolute top-20 left-10 w-80 h-80 bg-primary/10 rounded-full blur-3xl -z-10" />
-      <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent/10 rounded-full blur-3xl -z-10" />
-      
+    <section className="py-24 px-4 bg-gradient-to-b from-background to-muted/20 relative overflow-hidden">
+      {/* Decorative background elements */}
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
+      <div className="absolute top-40 -left-20 w-96 h-96 bg-primary/5 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute bottom-40 -right-20 w-96 h-96 bg-accent/5 rounded-full blur-[100px] pointer-events-none" />
+
       <div className="container mx-auto max-w-7xl">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold mb-6">
-            Nos <span className="text-gradient">Réalisations</span>
+        <div className="text-center mb-16 space-y-4">
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
+            Nos <span className="text-primary bg-clip-text text-transparent bg-gradient-to-r from-primary to-purple-600">Réalisations</span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Découvrez quelques-uns de nos projets réalisés avec nos projecteurs LED professionnels
+          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+            Plongez dans notre portfolio de projections lumineuses. Une collection de designs innovants et d'installations percutantes.
           </p>
         </div>
 
-        {/* Main Slider */}
-        <div className="relative max-w-4xl mx-auto mb-8">
-          <Card className="overflow-hidden border-2 bg-background/50 backdrop-blur-sm">
-            <div className="relative h-[400px]">
-              <img
-                src={projects[currentIndex].image}
-                alt={projects[currentIndex].title}
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
-                <h3 className="text-xl font-bold text-white mb-2">{projects[currentIndex].title}</h3>
-                <p className="text-white/90 text-sm">{projects[currentIndex].description}</p>
-              </div>
+        <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 space-y-4 pb-8">
+          {galleryImages.slice(0, visibleCount).map((image, index) => (
+            <div key={index} className="break-inside-avoid group relative">
+              <Dialog>
+                <DialogTrigger asChild>
+                  <div className="relative overflow-hidden rounded-xl cursor-zoom-in bg-muted shadow-sm hover:shadow-xl transition-all duration-500 border border-muted/50">
+                    <img
+                      src={image}
+                      alt={`Réalisation Projecteur Logo ${index + 1}`}
+                      className="w-full h-auto object-cover transform transition-transform duration-700 group-hover:scale-110"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                      <div className="bg-white/10 backdrop-blur-md p-3 rounded-full text-white ring-1 ring-white/20">
+                        <ZoomIn className="w-6 h-6" />
+                      </div>
+                    </div>
+                  </div>
+                </DialogTrigger>
+                <DialogContent className="max-w-5xl w-[95vw] p-1 bg-transparent border-none shadow-2xl backdrop-blur-sm">
+                  <DialogTitle className="sr-only">Vue détaillée de la réalisation</DialogTitle>
+                  <div className="relative rounded-lg overflow-hidden bg-black/90 aspect-auto flex items-center justify-center ring-1 ring-white/10">
+                    <img
+                      src={image}
+                      alt={`Réalisation Projecteur Logo ${index + 1}`}
+                      className="w-full h-auto max-h-[85vh] object-contain"
+                    />
+                  </div>
+                </DialogContent>
+              </Dialog>
             </div>
-          </Card>
-
-          {/* Navigation Buttons */}
-          <Button
-            variant="outline"
-            size="icon"
-            className="absolute left-4 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm border-2 hover:bg-background"
-            onClick={prevSlide}
-          >
-            <ChevronLeft className="h-6 w-6" />
-          </Button>
-          <Button
-            variant="outline"
-            size="icon"
-            className="absolute right-4 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm border-2 hover:bg-background"
-            onClick={nextSlide}
-          >
-            <ChevronRight className="h-6 w-6" />
-          </Button>
+          ))}
         </div>
 
-        {/* Thumbnail Navigation */}
-        <div className="flex justify-center gap-4 flex-wrap max-w-4xl mx-auto">
-          {projects.map((project, index) => (
-            <button
-              key={project.id}
-              onClick={() => goToSlide(index)}
-              className={`relative w-24 h-24 rounded-lg overflow-hidden border-2 transition-all duration-300 ${
-                currentIndex === index
-                  ? "border-primary scale-110 shadow-lg shadow-primary/50"
-                  : "border-muted hover:border-primary/50 opacity-60 hover:opacity-100"
-              }`}
+        {visibleCount < galleryImages.length && (
+          <div className="mt-12 text-center">
+            <Button 
+              onClick={showMore} 
+              size="lg" 
+              className="px-8 py-6 text-lg rounded-full shadow-lg shadow-primary/20 hover:shadow-primary/40 hover:-translate-y-1 transition-all duration-300"
             >
-              <img
-                src={project.image}
-                alt={project.title}
-                className="w-full h-full object-cover"
-              />
-            </button>
-          ))}
-        </div>
-
-        {/* Slide Indicators */}
-        <div className="flex justify-center gap-2 mt-8">
-          {projects.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => goToSlide(index)}
-              className={`h-2 rounded-full transition-all duration-300 ${
-                currentIndex === index ? "w-8 bg-primary" : "w-2 bg-muted-foreground/30"
-              }`}
-              aria-label={`Go to slide ${index + 1}`}
-            />
-          ))}
-        </div>
+              Voir plus de réalisations
+            </Button>
+          </div>
+        )}
       </div>
     </section>
   )

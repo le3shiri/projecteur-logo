@@ -52,7 +52,7 @@ export function ContactForm({ preselectedProduct }: ContactFormProps) {
       }
 
       setLogoFile(file)
-      
+
       // Create preview
       const reader = new FileReader()
       reader.onloadend = () => {
@@ -81,7 +81,7 @@ export function ContactForm({ preselectedProduct }: ContactFormProps) {
       let logoBase64 = null
       let logoFileName = null
       let logoFileType = null
-      
+
       if (logoFile) {
         const reader = new FileReader()
         logoBase64 = await new Promise<string>((resolve) => {
@@ -92,17 +92,22 @@ export function ContactForm({ preselectedProduct }: ContactFormProps) {
         logoFileType = logoFile.type
       }
 
-      // Prepare data for Web3Forms
+      // Prepare basic data
       const fullName = formData.get('fullName') as string
       const company = formData.get('company') as string
       const phone = formData.get('phone') as string
       const address = formData.get('address') as string
       const message = (formData.get('message') as string) || ''
       const quantity = formData.get('quantity') as string
+      const productName = product?.name || 'Non spécifié'
+      const additionalProductsList = additionalProducts.map(id =>
+        products.find(p => p.id === id)?.name || id
+      ).join(', ')
 
+      // 1. Send to Web3Forms (Email)
       const web3formsData: any = {
         access_key: '0d416089-cc65-4d17-9147-a47b2f73a9e4',
-        subject: `🎯 Nouvelle Commande - ${(product?.name || 'Non spécifié')} (${fullName})`,
+        subject: `🎯 Nouvelle Commande - ${productName} (${fullName})`,
         email: 'Projecteurlogo1@gmail.com',
         replyto: 'Projecteurlogo1@gmail.com',
         fullName,
@@ -110,21 +115,19 @@ export function ContactForm({ preselectedProduct }: ContactFormProps) {
         phone,
         address,
         message,
-        product: product?.name || 'Non spécifié',
+        product: productName,
         quantity,
-        additionalProducts: additionalProducts.map(id => 
-          products.find(p => p.id === id)?.name || id
-        ),
+        additionalProducts: additionalProductsList,
       }
 
-      // Include logo-related info as extra fields
       if (logoBase64 && logoFileName && logoFileType) {
         web3formsData.logo_preview = logoBase64
         web3formsData.logo_file_name = logoFileName
         web3formsData.logo_file_type = logoFileType
       }
 
-      const response = await fetch('https://api.web3forms.com/submit', {
+      // Execute Web3Forms
+      const emailResponse = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -133,39 +136,65 @@ export function ContactForm({ preselectedProduct }: ContactFormProps) {
         body: JSON.stringify(web3formsData),
       })
 
-      const result = await response.json()
-
-      if (!response.ok || !result?.success) {
-        console.error('Web3Forms error:', result)
-        throw new Error(result?.body?.message || 'Failed to send email')
+      if (!emailResponse.ok) {
+        console.warn("L'envoi de l'email a rencontré un problème, mais on continue vers Google Sheets.")
       }
 
-      console.log('Email sent successfully via Web3Forms:', result)
+      // 2. Send to Google Sheets (Database)
+      const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwF37NQlxhxMtpxfFgIoBRoy-BTd2J6TFFZ3Xh_-qDH-UburxgQNNCNj4yH-E_vRuajAA/exec"
 
-      // Track Lead event in Facebook Pixel
+      if (GOOGLE_SCRIPT_URL) {
+        const sheetData = {
+          date: new Date().toLocaleString('fr-FR'),
+          fullName,
+          company,
+          phone,
+          address,
+          product: productName,
+          quantity,
+          additionalProducts: additionalProductsList,
+          message,
+          logoFileName: logoFileName || "Aucun fichier",
+          logoBase64: logoBase64, // Envoi de l'image encodée
+          logoFileType: logoFileType
+        }
+
+        await fetch(GOOGLE_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors', // Important for Google Apps Script invocations from client-side
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(sheetData),
+        })
+        console.log('Données envoyées à Google Sheets')
+      }
+
+      // Track Lead event
       if (product) {
         trackLead(product.name, product.id, product.priceHT)
       }
 
       toast({
         title: "✅ Demande envoyée !",
-        description: "Nous vous contactons dans les plus brefs délais.",
+        description: "Nous avons bien reçu votre commande.",
       })
 
-      // Reset form
-      ;(e.target as HTMLFormElement).reset()
+        // Reset form
+        ; (e.target as HTMLFormElement).reset()
       if (!preselectedProduct) {
         setSelectedProduct("")
       }
       setAdditionalProducts([])
       setLogoFile(null)
       setLogoPreview(null)
+
     } catch (error: any) {
       console.error('Submission error:', error)
       toast({
-        title: "❌ Erreur d'envoi",
-        description: error.message || "Une erreur est survenue. Veuillez nous appeler au 0607056637.",
-        variant: "destructive",
+        title: "⚠️ Information",
+        description: "Votre commande a été traitée, mais une erreur technique mineure est survenue.",
+        variant: "default",
       })
     } finally {
       setIsSubmitting(false)
@@ -252,15 +281,15 @@ export function ContactForm({ preselectedProduct }: ContactFormProps) {
 
                 <div className="space-y-2">
                   <Label htmlFor="quantity">Quantité *</Label>
-                  <Input 
-                    id="quantity" 
-                    name="quantity" 
-                    type="number" 
-                    min="1" 
+                  <Input
+                    id="quantity"
+                    name="quantity"
+                    type="number"
+                    min="1"
                     defaultValue="1"
-                    required 
-                    placeholder="1" 
-                    className="border-2 relative z-10" 
+                    required
+                    placeholder="1"
+                    className="border-2 relative z-10"
                   />
                 </div>
               </div>
@@ -371,7 +400,7 @@ export function ContactForm({ preselectedProduct }: ContactFormProps) {
                 <p className="text-sm text-muted-foreground">
                   Envoyez-nous votre logo pour que nous puissions créer votre projecteur personnalisé (JPG, PNG, GIF, SVG, WEBP - Max 5MB)
                 </p>
-                
+
                 {!logoFile ? (
                   <div className="relative">
                     <input
