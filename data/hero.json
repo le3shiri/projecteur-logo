@@ -1,0 +1,53 @@
+{
+    "badge": "L'Innovation Lumineuse de Prochain Niveau",
+    "title": {
+        "main": "Projetez",
+        "accent": "Votre Vision"
+    },
+    "description": "Redéfinissez votre visibilité avec des projecteurs LED de précision. Une clarté Gobo inégalée pour les marques qui exigent l'excellence.",
+    "features": [
+        {
+            "text": "Puissance Ultra-LED",
+            "icon": "Zap",
+            "color": "text-primary"
+        },
+        {
+            "text": "Optique 4K",
+            "icon": "Star",
+            "color": "text-primary"
+        },
+        {
+            "text": "Ingénierie Française",
+            "icon": "Lightbulb",
+            "color": "text-primary"
+        }
+    ],
+    "ctas": {
+        "primary": {
+            "text": "Designer Votre Projecteur",
+            "href": "/contact"
+        },
+        "secondary": {
+            "text": "L'Expérience Shop",
+            "href": "/shop"
+        }
+    },
+    "trustItems": [
+        "✓ Garantie Exclusive 5 Ans",
+        "✓ Expédition Internationale"
+    ],
+    "floating": {
+        "stats": {
+            "value": "99.9%",
+            "label": "Taux de Précision"
+        },
+        "rating": {
+            "value": "4.9/5",
+            "label": "Satisfaction Client"
+        }
+    },
+    "images": {
+        "main": "/hero-video.mp4",
+        "poster": "/IMG-20251016-WA0145.jpg"
+    }
+}
