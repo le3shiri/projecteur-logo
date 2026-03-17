@@ -6,7 +6,7 @@ import { motion } from "framer-motion"
 
 export function HowToUse() {
   return (
-    <section id="comment-utiliser" className="py-32 px-4 bg-secondary/20 relative overflow-hidden">
+    <section id="comment-utiliser" className="py-16 lg:py-32 px-4 bg-secondary/20 relative overflow-hidden">
       {/* Background Glows */}
       <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] -z-10" />
       <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-accent/5 rounded-full blur-[120px] -z-10" />

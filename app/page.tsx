@@ -17,7 +17,7 @@ export default function Home() {
       <Gallery />
       
       {/* Premium Products Section */}
-      <section className="py-32 px-4 relative overflow-hidden bg-secondary/30">
+      <section className="py-16 md:py-32 px-4 relative overflow-hidden bg-secondary/30">
         <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
         <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[120px] pointer-events-none" />
         <div className="absolute bottom-1/4 right-0 w-[500px] h-[500px] bg-accent/10 rounded-full blur-[120px] pointer-events-none" />

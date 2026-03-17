@@ -217,7 +217,7 @@ export function ProductPageClient({ product }: ProductPageClientProps) {
       </section>
 
       {/* Modern Features Section */}
-      <section className="py-32 px-4 relative overflow-hidden bg-secondary/20">
+      <section className="py-16 lg:py-32 px-4 relative overflow-hidden bg-secondary/20">
         <div className="container mx-auto max-w-7xl relative z-10">
           <div className="text-center mb-24 space-y-6">
             <h2 className="text-5xl md:text-7xl font-black tracking-tighter">
@@ -252,7 +252,7 @@ export function ProductPageClient({ product }: ProductPageClientProps) {
       </section>
 
       {/* Tech Specs Section */}
-      <section className="py-32 px-4 bg-background">
+      <section className="py-16 lg:py-32 px-4 bg-background">
         <div className="container mx-auto max-w-4xl">
           <div className="text-center mb-20">
             <h2 className="text-5xl font-black tracking-tighter mb-4 text-gradient">ورقة تقنية</h2>
@@ -277,7 +277,7 @@ export function ProductPageClient({ product }: ProductPageClientProps) {
       </section>
 
       {/* Massive CTA */}
-      <section className="py-40 px-4 relative overflow-hidden">
+      <section className="py-20 lg:py-40 px-4 relative overflow-hidden">
         <div className="absolute inset-0 bg-primary/5 -z-10" />
         <div className="container mx-auto max-w-5xl text-center space-y-12">
            <motion.div

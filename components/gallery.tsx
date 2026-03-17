@@ -118,7 +118,7 @@ export function Gallery() {
   }
 
   return (
-    <section className="py-32 px-4 relative overflow-hidden bg-background">
+    <section className="py-16 lg:py-32 px-4 relative overflow-hidden bg-background">
       {/* Abstract Background Visuals */}
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
       <div className="absolute top-[20%] right-[-10%] w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
