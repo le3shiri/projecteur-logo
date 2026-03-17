@@ -10,7 +10,7 @@ import { ArrowRight, Zap, Target, Sparkles } from "lucide-react"
 
 export function ProductsGrid() {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10">
       {products.map((product, index) => (
         <motion.div
           key={product.id}
@@ -22,11 +22,11 @@ export function ProductsGrid() {
         >
           <div className="relative h-full">
             {/* Animated Border Glow */}
-            <div className="absolute -inset-0.5 bg-gradient-to-br from-primary/30 to-accent/30 rounded-[42px] blur-md opacity-0 group-hover:opacity-100 transition duration-700" />
+            <div className="absolute -inset-0.5 bg-gradient-to-br from-primary/30 to-accent/30 rounded-[32px] md:rounded-[42px] blur-md opacity-0 group-hover:opacity-100 transition duration-700" />
             
-            <Card className="relative h-full border-none bg-background/60 backdrop-blur-3xl rounded-[40px] p-4 sm:p-5 overflow-hidden shadow-[0_10px_40px_-15px_rgba(0,0,0,0.3)] ring-1 ring-white/10 group-hover:ring-primary/50 transition-all duration-500 flex flex-col group-hover:-translate-y-2">
+            <Card className="relative h-full border-none bg-background/60 backdrop-blur-3xl rounded-[30px] md:rounded-[40px] p-3 sm:p-5 overflow-hidden shadow-[0_10px_40px_-15px_rgba(0,0,0,0.3)] ring-1 ring-white/10 group-hover:ring-primary/50 transition-all duration-500 flex flex-col group-hover:-translate-y-2">
               {/* Image Section */}
-              <div className="relative aspect-square md:aspect-[4/3] overflow-hidden rounded-[32px] bg-secondary/50 group-hover:shadow-[0_0_30px_-10px_rgba(var(--primary),0.4)] transition-all duration-500">
+              <div className="relative aspect-square overflow-hidden rounded-[24px] md:rounded-[32px] bg-secondary/50 group-hover:shadow-[0_0_30px_-10px_rgba(var(--primary),0.4)] transition-all duration-500">
                 <motion.img
                   whileHover={{ scale: 1.12 }}
                   transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
@@ -34,21 +34,21 @@ export function ProductsGrid() {
                   alt={product.name}
                   className="w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
                 
-                <Badge className={`absolute top-4 right-4 ${product.badgeColor} px-4 py-2 rounded-full text-[11px] font-black tracking-widest uppercase border-none shadow-xl backdrop-blur-md`}>
+                <Badge className={`absolute top-3 right-3 md:top-4 md:right-4 ${product.badgeColor} px-3 py-1.5 md:px-4 md:py-2 rounded-full text-[9px] md:text-[11px] font-black tracking-widest uppercase border-none shadow-xl backdrop-blur-md`}>
                   {product.badge}
                 </Badge>
 
-                {/* Quick Info Overlay */}
-                <div className="absolute bottom-4 inset-x-4 flex justify-between items-center bg-black/40 backdrop-blur-xl rounded-2xl p-3 sm:p-4 border border-white/10 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500 translate-y-4 group-hover:translate-y-0 transition-transform">
-                  <div className="flex items-center gap-2 text-white">
-                    <Zap className="w-4 h-4 text-primary drop-shadow-[0_0_5px_rgba(var(--primary),0.8)]" />
-                    <span className="text-sm font-bold">{product.power}</span>
+                {/* Quick Info Overlay - Always visible on mobile */}
+                <div className="absolute bottom-3 inset-x-3 md:bottom-4 md:inset-x-4 flex justify-between items-center bg-black/40 backdrop-blur-xl rounded-xl md:rounded-2xl p-2.5 md:p-4 border border-white/10 shadow-lg opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-all duration-500 lg:translate-y-4 lg:group-hover:translate-y-0">
+                  <div className="flex items-center gap-1.5 md:gap-2 text-white">
+                    <Zap className="w-3.5 h-3.5 md:w-4 md:h-4 text-primary" />
+                    <span className="text-xs md:text-sm font-bold">{product.power}</span>
                   </div>
-                  <div className="flex items-center gap-2 text-white">
-                    <Target className="w-4 h-4 text-primary drop-shadow-[0_0_5px_rgba(var(--primary),0.8)]" />
-                    <span className="text-sm font-bold">{product.distance}</span>
+                  <div className="flex items-center gap-1.5 md:gap-2 text-white">
+                    <Target className="w-3.5 h-3.5 md:w-4 md:h-4 text-primary" />
+                    <span className="text-xs md:text-sm font-bold">{product.distance}</span>
                   </div>
                 </div>
               </div>

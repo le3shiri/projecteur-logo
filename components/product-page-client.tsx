@@ -74,28 +74,28 @@ export function ProductPageClient({ product }: ProductPageClientProps) {
   return (
     <div className="bg-background">
       {/* Product Hero Section */}
-      <section className="relative pt-40 pb-24 px-4 overflow-hidden">
+      <section className="relative pt-32 pb-16 md:pt-40 md:pb-24 px-4 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-accent/5 to-background -z-20" />
-        <div className="absolute top-[10%] right-[-5%] w-[600px] h-[600px] bg-primary/10 rounded-full blur-[120px] -z-10 animate-pulse" />
+        <div className="absolute top-[10%] right-[-5%] w-[300px] h-[300px] md:w-[600px] md:h-[600px] bg-primary/10 rounded-full blur-[80px] md:blur-[120px] -z-10 animate-pulse" />
 
         <div className="container mx-auto max-w-7xl relative z-10">
-          <div className="grid lg:grid-cols-2 gap-20 items-start">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
             
             {/* Left: Product Images */}
             <motion.div 
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-              className="space-y-6"
+              className="space-y-4 md:space-y-6"
             >
-              <div className="relative group aspect-square rounded-[40px] overflow-hidden bg-secondary shadow-2xl border border-white/10 ring-1 ring-white/5">
+              <div className="relative group aspect-square rounded-[24px] md:rounded-[40px] overflow-hidden bg-secondary shadow-xl md:shadow-2xl border border-white/10 ring-1 ring-white/5">
                 <AnimatePresence mode="wait">
                   <motion.img
                     key={currentImageIndex}
                     initial={{ opacity: 0, scale: 1.1 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 1.05 }}
-                    transition={{ duration: 0.8, ease: "easeInOut" }}
+                    transition={{ duration: 0.6, ease: "easeInOut" }}
                     src={productImages[currentImageIndex]}
                     alt={product.name}
                     className="w-full h-full object-cover"
@@ -105,42 +105,42 @@ export function ProductPageClient({ product }: ProductPageClientProps) {
                 {/* Overlays */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
                 
-                {/* Navigation */}
-                <div className="absolute inset-x-6 top-1/2 -translate-y-1/2 flex justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                {/* Navigation - Better Mobile Tap Targets */}
+                <div className="absolute inset-x-2 md:inset-x-6 top-1/2 -translate-y-1/2 flex justify-between opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300">
                   <Button
                     variant="outline"
                     size="icon"
-                    className="w-14 h-14 rounded-2xl bg-white/10 backdrop-blur-xl border-white/20 hover:bg-white/20 text-white"
-                    onClick={prevImage}
+                    className="w-10 h-10 md:w-14 md:h-14 rounded-xl md:rounded-2xl bg-white/20 backdrop-blur-xl border-white/30 hover:bg-white/30 text-white"
+                    onClick={(e) => { e.preventDefault(); prevImage(); }}
                   >
-                    <ChevronLeft className="h-8 w-8" />
+                    <ChevronLeft className="h-6 w-6 md:h-8 md:h-8" />
                   </Button>
                   <Button
                     variant="outline"
                     size="icon"
-                    className="w-14 h-14 rounded-2xl bg-white/10 backdrop-blur-xl border-white/20 hover:bg-white/20 text-white"
-                    onClick={nextImage}
+                    className="w-10 h-10 md:w-14 md:h-14 rounded-xl md:rounded-2xl bg-white/20 backdrop-blur-xl border-white/30 hover:bg-white/30 text-white"
+                    onClick={(e) => { e.preventDefault(); nextImage(); }}
                   >
-                    <ChevronRight className="h-8 w-8" />
+                    <ChevronRight className="h-6 w-6 md:h-8 md:h-8" />
                   </Button>
                 </div>
 
                 {/* Counter */}
-                <div className="absolute bottom-8 right-8 cursor-default">
-                   <div className="bg-background/40 backdrop-blur-xl border border-white/20 rounded-2xl px-5 py-2 text-white font-black text-sm tracking-widest">
+                <div className="absolute bottom-4 right-4 md:bottom-8 md:right-8 cursor-default">
+                   <div className="bg-background/60 backdrop-blur-xl border border-white/20 rounded-xl md:rounded-2xl px-3 py-1.5 md:px-5 md:py-2 text-white font-black text-xs md:text-sm tracking-widest">
                      {currentImageIndex + 1} <span className="text-white/40">/</span> {productImages.length}
                    </div>
                 </div>
               </div>
 
-              {/* Thumbnails */}
-              <div className="flex gap-4 overflow-x-auto pb-2 scrollbar-hide">
+              {/* Thumbnails - Improved Scroll */}
+              <div className="flex gap-3 md:gap-4 overflow-x-auto pb-2 scrollbar-hide snap-x">
                 {productImages.map((img, idx) => (
                   <button
                     key={idx}
                     onClick={() => setCurrentImageIndex(idx)}
-                    className={`relative flex-shrink-0 w-24 h-24 rounded-2xl overflow-hidden border-2 transition-all duration-300 ${
-                      currentImageIndex === idx ? "border-primary scale-105 shadow-lg" : "border-transparent opacity-60 hover:opacity-100"
+                    className={`relative flex-shrink-0 w-20 h-20 md:w-24 md:h-24 rounded-xl md:rounded-2xl overflow-hidden border-2 transition-all duration-300 snap-center ${
+                      currentImageIndex === idx ? "border-primary scale-105 shadow-md" : "border-transparent opacity-60 hover:opacity-100"
                     }`}
                   >
                     <img src={img} alt="Thumb" className="w-full h-full object-cover" />
@@ -154,59 +154,61 @@ export function ProductPageClient({ product }: ProductPageClientProps) {
                variants={containerVariants}
                initial="hidden"
                animate="visible"
-               className="space-y-10 lg:sticky lg:top-32"
+               className="space-y-8 md:space-y-10 lg:sticky lg:top-32 text-right"
             >
               <motion.div variants={itemVariants} className="space-y-4">
-                <Badge className={`${product.badgeColor} px-6 py-2 rounded-full text-xs font-black tracking-widest uppercase border-none shadow-lg`}>
-                   <Star className="w-3 h-3 mr-2 fill-current" />
+                <Badge className={`${product.badgeColor} px-4 py-1.5 md:px-6 md:py-2 rounded-full text-[10px] md:text-xs font-black tracking-widest uppercase border-none shadow-lg w-fit ml-auto flex items-center`}>
+                   <Star className="w-3 h-3 ml-2 fill-current" />
                    {product.badge}
                 </Badge>
-                <h1 className="text-6xl md:text-7xl font-black tracking-tighter leading-tight">
+                <h1 className="text-4xl md:text-6xl lg:text-7xl font-black tracking-tighter leading-tight">
                   <span className="text-gradient">{product.name}</span>
                 </h1>
-                <p className="text-2xl text-muted-foreground font-medium leading-relaxed">
+                <p className="text-lg md:text-xl lg:text-2xl text-muted-foreground font-medium leading-relaxed">
                   {product.description}
                 </p>
               </motion.div>
 
-              {/* Stats Grid */}
-              <motion.div variants={itemVariants} className="grid grid-cols-2 md:grid-cols-3 gap-4">
+              {/* Stats Grid - 3 Columns on Mobile too */}
+              <motion.div variants={itemVariants} className="grid grid-cols-3 gap-2 md:gap-4">
                 {[
                   { icon: Zap, label: "القوة", value: product.power, sub: "لومن برو", color: "text-amber-500" },
-                  { icon: Sparkles, label: "المدى الأقصى", value: product.distance, sub: "وضوح HD", color: "text-primary" },
-                  { icon: Shield, label: "الضمان", value: "24 شهرًا", sub: "استبدال بجديد", color: "text-blue-500" }
+                  { icon: Sparkles, label: "المدى", value: product.distance, sub: "وضوح HD", color: "text-primary" },
+                  { icon: Shield, label: "الضمان", value: "24 شهر", sub: "استبدال", color: "text-blue-500" }
                 ].map((stat, i) => (
-                  <div key={i} className="bg-secondary/40 backdrop-blur-md rounded-[28px] p-6 border border-white/5 group hover:border-primary/30 transition-all duration-500">
-                    <stat.icon className={`w-6 h-6 ${stat.color} mb-4 group-hover:scale-110 transition-transform`} />
-                    <p className="text-xs font-bold text-muted-foreground uppercase tracking-widest mb-1">{stat.label}</p>
-                    <p className="text-xl font-black">{stat.value}</p>
-                    <p className="text-[10px] font-bold text-muted-foreground/60 mt-1">{stat.sub}</p>
+                  <div key={i} className="bg-secondary/40 backdrop-blur-md rounded-2xl md:rounded-[28px] p-3 md:p-6 border border-white/5 group hover:border-primary/30 transition-all duration-500 text-center">
+                    <stat.icon className={`w-5 h-5 md:w-6 md:h-6 ${stat.color} mx-auto mb-2 md:mb-4 group-hover:scale-110 transition-transform`} />
+                    <p className="text-[8px] md:text-xs font-bold text-muted-foreground uppercase tracking-widest mb-0.5 md:mb-1">{stat.label}</p>
+                    <p className="text-sm md:text-xl font-black truncate">{stat.value}</p>
+                    <p className="text-[8px] md:text-[10px] font-bold text-muted-foreground/60 mt-0.5 md:mt-1">{stat.sub}</p>
                   </div>
                 ))}
               </motion.div>
 
               <motion.div variants={itemVariants} className="space-y-6">
-                <div className="flex items-baseline gap-4">
-                  <p className="text-6xl font-black text-foreground" dir="ltr">{product.price}</p>
-                  <p className="text-lg font-bold text-muted-foreground uppercase tracking-wider">شامل الضريبة</p>
+                <div className="flex flex-col items-center md:items-start gap-2">
+                  <div className="flex items-baseline gap-4">
+                    <p className="text-4xl md:text-6xl font-black text-foreground" dir="ltr">{product.price}</p>
+                    <p className="text-sm md:text-lg font-bold text-muted-foreground uppercase tracking-wider">شامل الضريبة</p>
+                  </div>
                 </div>
 
-                <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                  <Button size="lg" className="gradient-glow h-20 px-12 rounded-[24px] text-xl font-black shadow-2xl group flex-1" asChild>
+                <div className="flex flex-col sm:flex-row gap-4 pt-2">
+                  <Button size="lg" className="gradient-glow h-16 md:h-20 px-8 md:px-12 rounded-xl md:rounded-[24px] text-lg md:text-xl font-black shadow-2xl group flex-1" asChild>
                     <Link href={`/contact?produit=${product.id}`} onClick={handleCommanderClick} className="flex flex-row items-center justify-center">
                       اطلب الآن
-                      <ArrowRight className="mr-3 h-6 w-6 group-hover:-translate-x-2 transition-transform rotate-180" />
+                      <ArrowRight className="mr-3 h-5 w-5 md:h-6 md:w-6 group-hover:-translate-x-2 transition-transform rotate-180" />
                     </Link>
                   </Button>
                 </div>
 
-                <div className="flex items-center gap-8 text-sm font-bold text-muted-foreground pt-4">
-                   <div className="flex items-center gap-2">
-                     <Clock className="w-5 h-5 text-primary" />
+                <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 md:gap-8 text-[11px] md:text-sm font-bold text-muted-foreground pt-2">
+                   <div className="flex items-center gap-2 bg-primary/5 px-3 py-1.5 rounded-full">
+                     <Clock className="w-4 h-4 text-primary" />
                      شحن خلال 48 ساعة
                    </div>
-                   <div className="flex items-center gap-2">
-                     <Trophy className="w-5 h-5 text-primary" />
+                   <div className="flex items-center gap-2 bg-primary/5 px-3 py-1.5 rounded-full">
+                     <Trophy className="w-4 h-4 text-primary" />
                      أفضل سعر مضمون
                    </div>
                 </div>
