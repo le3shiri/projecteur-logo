@@ -197,8 +197,8 @@ ${logoFileName ? `\n*مرفق شعار:* نعم (${logoFileName})` : ''}
       
       const whatsappUrl = `https://wa.me/${waPhoneNumber}?text=${encodeURIComponent(waMessage)}`
       
-      // Open WhatsApp in new tab
-      window.open(whatsappUrl, '_blank')
+      // Open WhatsApp
+      window.location.href = whatsappUrl
 
       ;(e.target as HTMLFormElement).reset()
       if (!preselectedProduct) setSelectedProduct("")
