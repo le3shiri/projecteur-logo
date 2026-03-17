@@ -22,16 +22,16 @@ export function Header() {
     <header 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled 
-          ? "py-3" 
-          : "py-6"
+          ? "py-2 md:py-3" 
+          : "py-4 md:py-6"
       }`}
     >
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 max-w-7xl">
         <div 
-          className={`flex items-center justify-between px-6 py-3 rounded-2xl transition-all duration-500 ${
+          className={`flex items-center justify-between px-4 md:px-6 py-2 md:py-3 rounded-xl md:rounded-2xl transition-all duration-500 ${
             isScrolled 
-              ? "bg-background/40 backdrop-blur-2xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.1)] ring-1 ring-white/10" 
-              : "bg-transparent border border-transparent shadow-none"
+              ? "bg-background/60 backdrop-blur-2xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.1)] ring-1 ring-white/10" 
+              : "bg-background/40 lg:bg-transparent backdrop-blur-xl lg:backdrop-blur-none border border-white/5 lg:border-transparent shadow-none"
           }`}
         >
           <Link href="/" className="flex items-center gap-3 group">
