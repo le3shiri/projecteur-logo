@@ -1,49 +1,49 @@
 {
-    "badge": "L'Innovation Lumineuse de Prochain Niveau",
+    "badge": "الابتكار الضوئي من المستوى التالي",
     "title": {
-        "main": "Projetez",
-        "accent": "Votre Vision"
+        "main": "أضئ",
+        "accent": "رؤيتك"
     },
-    "description": "Redéfinissez votre visibilité avec des projecteurs LED de précision. Une clarté Gobo inégalée pour les marques qui exigent l'excellence.",
+    "description": "أعد تعريف حضورك مع أجهزة عرض LED الدقيقة. وضوح Gobo لا مثيل له للعلامات التجارية التي تطمح للتميز.",
     "features": [
         {
-            "text": "Puissance Ultra-LED",
+            "text": "قوة Ultra-LED",
             "icon": "Zap",
             "color": "text-primary"
         },
         {
-            "text": "Optique 4K",
+            "text": "بصريات 4K",
             "icon": "Star",
             "color": "text-primary"
         },
         {
-            "text": "Ingénierie Française",
+            "text": "هندسة فرنسية",
             "icon": "Lightbulb",
             "color": "text-primary"
         }
     ],
     "ctas": {
         "primary": {
-            "text": "Designer Votre Projecteur",
+            "text": "صمم جهازك الآن",
             "href": "/contact"
         },
         "secondary": {
-            "text": "L'Expérience Shop",
+            "text": "تصفح المتجر",
             "href": "/shop"
         }
     },
     "trustItems": [
-        "✓ Garantie Exclusive 5 Ans",
-        "✓ Expédition Internationale"
+        "✓ ضمان حصري 5 سنوات",
+        "✓ شحن دولي"
     ],
     "floating": {
         "stats": {
             "value": "99.9%",
-            "label": "Taux de Précision"
+            "label": "معدل الدقة"
         },
         "rating": {
             "value": "4.9/5",
-            "label": "Satisfaction Client"
+            "label": "رضا العملاء"
         }
     },
     "images": {

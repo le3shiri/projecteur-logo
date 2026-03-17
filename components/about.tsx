@@ -19,20 +19,19 @@ export function About() {
 
           <div className="space-y-6 order-1 lg:order-2">
             <h2 className="text-3xl md:text-5xl font-bold text-balance">
-              À propos de nos <span className="text-gradient">projecteurs de logo</span>
+              عن <span className="text-gradient">أجهزة عرض الشعارات</span> الخاصة بنا
             </h2>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              Donnez vie à votre identité visuelle grâce à nos projecteurs de logo LED : des dispositifs élégants,
-              professionnels et personnalisables qui mettent en lumière votre logo où que vous le souhaitiez.
+              اجعل هويتك البصرية تنبض بالحياة مع أجهزة عرض الشعارات LED الخاصة بنا: أجهزة أنيقة واحترافية وقابلة للتخصيص تسلط الضوء على شعارك أينما تريد.
             </p>
             <div className="grid grid-cols-2 gap-4 pt-4">
               <div className="p-4 bg-primary/10 rounded-xl border-2 border-primary/30 card-hover">
-                <p className="text-4xl font-bold text-primary neon-text">90%</p>
-                <p className="text-sm text-muted-foreground mt-2">Visibilité accrue</p>
+                <p className="text-4xl font-bold text-primary neon-text" dir="ltr">90%</p>
+                <p className="text-sm text-muted-foreground mt-2">رؤية محسنة</p>
               </div>
               <div className="p-4 bg-accent/10 rounded-xl border-2 border-accent/30 card-hover">
                 <p className="text-4xl font-bold text-accent-foreground neon-text">48h</p>
-                <p className="text-sm text-muted-foreground mt-2">Livraison rapide</p>
+                <p className="text-sm text-muted-foreground mt-2">توصيل سريع</p>
               </div>
             </div>
           </div>

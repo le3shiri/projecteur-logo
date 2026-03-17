@@ -172,9 +172,9 @@ export function ProductPageClient({ product }: ProductPageClientProps) {
               {/* Stats Grid */}
               <motion.div variants={itemVariants} className="grid grid-cols-2 md:grid-cols-3 gap-4">
                 {[
-                  { icon: Zap, label: "Puissance", value: product.power, sub: "Lumen Pro", color: "text-amber-500" },
-                  { icon: Sparkles, label: "Portée Max", value: product.distance, sub: "Clarté HD", color: "text-primary" },
-                  { icon: Shield, label: "Garantie", value: "24 Mois", sub: "Échange à neuf", color: "text-blue-500" }
+                  { icon: Zap, label: "القوة", value: product.power, sub: "لومن برو", color: "text-amber-500" },
+                  { icon: Sparkles, label: "المدى الأقصى", value: product.distance, sub: "وضوح HD", color: "text-primary" },
+                  { icon: Shield, label: "الضمان", value: "24 شهرًا", sub: "استبدال بجديد", color: "text-blue-500" }
                 ].map((stat, i) => (
                   <div key={i} className="bg-secondary/40 backdrop-blur-md rounded-[28px] p-6 border border-white/5 group hover:border-primary/30 transition-all duration-500">
                     <stat.icon className={`w-6 h-6 ${stat.color} mb-4 group-hover:scale-110 transition-transform`} />
@@ -187,15 +187,15 @@ export function ProductPageClient({ product }: ProductPageClientProps) {
 
               <motion.div variants={itemVariants} className="space-y-6">
                 <div className="flex items-baseline gap-4">
-                  <p className="text-6xl font-black text-foreground">{product.price}</p>
-                  <p className="text-lg font-bold text-muted-foreground uppercase tracking-wider">TVA Incluse</p>
+                  <p className="text-6xl font-black text-foreground" dir="ltr">{product.price}</p>
+                  <p className="text-lg font-bold text-muted-foreground uppercase tracking-wider">شامل الضريبة</p>
                 </div>
 
                 <div className="flex flex-col sm:flex-row gap-4 pt-4">
                   <Button size="lg" className="gradient-glow h-20 px-12 rounded-[24px] text-xl font-black shadow-2xl group flex-1" asChild>
-                    <Link href={`/contact?produit=${product.id}`} onClick={handleCommanderClick}>
-                      COMMANDER MAINTENANT
-                      <ArrowRight className="ml-3 h-6 w-6 group-hover:translate-x-2 transition-transform" />
+                    <Link href={`/contact?produit=${product.id}`} onClick={handleCommanderClick} className="flex flex-row items-center justify-center">
+                      اطلب الآن
+                      <ArrowRight className="mr-3 h-6 w-6 group-hover:-translate-x-2 transition-transform rotate-180" />
                     </Link>
                   </Button>
                 </div>
@@ -203,11 +203,11 @@ export function ProductPageClient({ product }: ProductPageClientProps) {
                 <div className="flex items-center gap-8 text-sm font-bold text-muted-foreground pt-4">
                    <div className="flex items-center gap-2">
                      <Clock className="w-5 h-5 text-primary" />
-                     Expédié en 48h
+                     شحن خلال 48 ساعة
                    </div>
                    <div className="flex items-center gap-2">
                      <Trophy className="w-5 h-5 text-primary" />
-                     Meilleur Prix Garanti
+                     أفضل سعر مضمون
                    </div>
                 </div>
               </motion.div>
@@ -221,10 +221,10 @@ export function ProductPageClient({ product }: ProductPageClientProps) {
         <div className="container mx-auto max-w-7xl relative z-10">
           <div className="text-center mb-24 space-y-6">
             <h2 className="text-5xl md:text-7xl font-black tracking-tighter">
-              Performance <span className="text-gradient">Sans Compromis</span>
+              أداء <span className="text-gradient">بدون تنازلات</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto font-medium">
-              Une ingénierie de précision pour un résultat visuel qui dépasse vos attentes.
+              هندسة دقيقة لنتيجة بصرية تفوق توقعاتك.
             </p>
           </div>
 
@@ -255,7 +255,7 @@ export function ProductPageClient({ product }: ProductPageClientProps) {
       <section className="py-32 px-4 bg-background">
         <div className="container mx-auto max-w-4xl">
           <div className="text-center mb-20">
-            <h2 className="text-5xl font-black tracking-tighter mb-4 text-gradient">Fiche Technique</h2>
+            <h2 className="text-5xl font-black tracking-tighter mb-4 text-gradient">ورقة تقنية</h2>
             <div className="h-1.5 w-24 bg-primary mx-auto rounded-full" />
           </div>
           <div className="grid gap-1">
@@ -269,7 +269,7 @@ export function ProductPageClient({ product }: ProductPageClientProps) {
                 className="flex items-center justify-between py-8 px-10 rounded-[24px] hover:bg-secondary/30 transition-colors border-b border-primary/5 last:border-0 group"
               >
                 <span className="text-xl font-bold text-muted-foreground group-hover:text-foreground transition-colors">{spec.label}</span>
-                <span className="text-xl font-black text-primary">{spec.value}</span>
+                <span className="text-xl font-black text-primary" dir="ltr">{spec.value}</span>
               </motion.div>
             ))}
           </div>
@@ -287,11 +287,11 @@ export function ProductPageClient({ product }: ProductPageClientProps) {
              className="space-y-6"
            >
              <h2 className="text-6xl md:text-8xl font-black tracking-tighter leading-none text-balance">
-               Prêt à révolutionner <br /> 
-               <span className="text-gradient">votre façade ?</span>
+               مستعد لإحداث ثورة <br /> 
+               <span className="text-gradient">في واجهتك؟</span>
              </h2>
              <p className="text-2xl text-muted-foreground max-w-3xl mx-auto font-medium">
-               Commandez votre {product.name} et recevez votre visuel personnalisé sous 48h.
+               اطلب {product.name} واستلم تصميمك المخصص خلال 48 ساعة.
              </p>
            </motion.div>
            
@@ -303,7 +303,7 @@ export function ProductPageClient({ product }: ProductPageClientProps) {
            >
              <Button size="lg" className="gradient-glow h-24 px-16 rounded-[30px] text-2xl font-black shadow-3xl hover:scale-105 active:scale-95 transition-all" asChild>
                <Link href={`/contact?produit=${product.id}`}>
-                 CONFIGURER VOTRE PROJET
+                 قم بإعداد مشروعك
                </Link>
              </Button>
            </motion.div>

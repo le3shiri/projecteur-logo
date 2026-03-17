@@ -13,10 +13,10 @@ export default function ShopPage() {
         <div className="absolute bottom-10 left-10 w-96 h-96 bg-accent/10 rounded-full blur-3xl -z-10" />
         <div className="container mx-auto max-w-7xl text-center space-y-8">
           <h1 className="text-5xl md:text-6xl font-bold tracking-tight">
-            Notre <span className="text-gradient">Collection</span>
+            <span className="text-gradient">مجموعتنا</span>
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Découvrez notre gamme complète de projecteurs LED professionnels, conçus pour illuminer votre marque avec style et efficacité
+            اكتشف مجموعتنا الكاملة من أجهزة العرض LED الاحترافية، المصممة لإضاءة علامتك التجارية بأناقة وكفاءة
           </p>
         </div>
       </section>

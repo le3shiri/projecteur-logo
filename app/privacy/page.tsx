@@ -11,10 +11,10 @@ export default function PrivacyPage() {
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-accent/5 to-background -z-10" />
         <div className="container mx-auto max-w-4xl text-center space-y-8">
           <h1 className="text-5xl md:text-6xl font-bold tracking-tight">
-            Politique de <span className="text-gradient">Confidentialité</span>
+            سياسة <span className="text-gradient">الخصوصية</span>
           </h1>
           <p className="text-xl text-muted-foreground">
-            Dernière mise à jour : {new Date().toLocaleDateString('fr-FR')}
+            آخر تحديث: {new Date().toLocaleDateString('ar-MA')}
           </p>
         </div>
       </section>
@@ -24,96 +24,83 @@ export default function PrivacyPage() {
           <Card className="border-2">
             <CardContent className="p-8 space-y-8">
               <div>
-                <h2 className="text-2xl font-bold mb-4">1. Collecte des données</h2>
+                <h2 className="text-2xl font-bold mb-4">1. جمع البيانات</h2>
                 <p className="text-muted-foreground leading-relaxed">
-                  Nous collectons des informations lorsque vous visitez notre site web, passez une commande, 
-                  ou remplissez un formulaire. Les informations collectées incluent votre nom, adresse e-mail, 
-                  numéro de téléphone, et adresse.
+                  نقوم بجمع المعلومات عندما تزور موقعنا الإلكتروني أو تطلب طلبية أو تملأ نموذجًا. تشمل المعلومات التي يتم جمعها اسمك وعنوان بريدك الإلكتروني ورقم هاتف وعنوانك.
                 </p>
               </div>
 
               <div>
-                <h2 className="text-2xl font-bold mb-4">2. Utilisation des cookies</h2>
+                <h2 className="text-2xl font-bold mb-4">2. استخدام ملفات تعريف الارتباط</h2>
                 <p className="text-muted-foreground leading-relaxed mb-4">
-                  Nous utilisons des cookies et des technologies similaires pour :
+                  نحن نستخدم ملفات تعريف الارتباط والتقنيات المشابهة لـ:
                 </p>
-                <ul className="list-disc list-inside space-y-2 text-muted-foreground ml-4">
-                  <li>Améliorer votre expérience de navigation</li>
-                  <li>Analyser le trafic du site web</li>
-                  <li>Personnaliser le contenu et les publicités</li>
-                  <li>Suivre les conversions publicitaires via Facebook Pixel</li>
+                <ul className="list-disc list-inside space-y-2 text-muted-foreground mr-4">
+                  <li>تحسين تجربة التصفح الخاصة بك</li>
+                  <li>تحليل حركة المرور على الموقع</li>
+                  <li>تخصيص المحتوى والإعلانات</li>
+                  <li>تتبع تحويلات الإعلانات عبر Facebook Pixel</li>
                 </ul>
               </div>
 
               <div>
                 <h2 className="text-2xl font-bold mb-4">3. Facebook Pixel</h2>
                 <p className="text-muted-foreground leading-relaxed">
-                  Nous utilisons Facebook Pixel (ID: 680515578431305) pour mesurer l'efficacité de nos 
-                  campagnes publicitaires et améliorer nos services. Facebook Pixel collecte des informations 
-                  sur votre navigation et vos interactions avec notre site. Vous pouvez refuser le suivi en 
-                  déclinant les cookies lors de votre première visite.
+                  نحن نستخدم Facebook Pixel (المعرف: 680515578431305) لقياس فعالية حملاتنا الإعلانية وتحسين خدماتنا. يجمع Facebook Pixel معلومات حول تصفحك وتفاعلاتك مع موقعنا. يمكنك رفض التتبع عن طريق رفض ملفات تعريف الارتباط عند زيارتك الأولى.
                 </p>
               </div>
 
               <div>
-                <h2 className="text-2xl font-bold mb-4">4. Utilisation des données</h2>
+                <h2 className="text-2xl font-bold mb-4">4. استخدام البيانات</h2>
                 <p className="text-muted-foreground leading-relaxed mb-4">
-                  Nous utilisons vos informations pour :
+                  نحن نستخدم معلوماتك من أجل:
                 </p>
-                <ul className="list-disc list-inside space-y-2 text-muted-foreground ml-4">
-                  <li>Traiter vos commandes et gérer votre compte</li>
-                  <li>Améliorer notre site web et nos services</li>
-                  <li>Vous envoyer des informations et mises à jour</li>
-                  <li>Personnaliser votre expérience</li>
+                <ul className="list-disc list-inside space-y-2 text-muted-foreground mr-4">
+                  <li>معالجة طلباتك وإدارة حسابك</li>
+                  <li>تحسين موقعنا وخدماتنا</li>
+                  <li>إرسال المعلومات والتحديثات لك</li>
+                  <li>تخصيص تجربتك</li>
                 </ul>
               </div>
 
               <div>
-                <h2 className="text-2xl font-bold mb-4">5. Protection des données</h2>
+                <h2 className="text-2xl font-bold mb-4">5. حماية البيانات</h2>
                 <p className="text-muted-foreground leading-relaxed">
-                  Nous mettons en œuvre diverses mesures de sécurité pour protéger vos informations 
-                  personnelles. Vos données sont stockées de manière sécurisée et ne sont accessibles 
-                  qu'aux personnes autorisées.
+                  نحن ننفذ تدابير أمنية مختلفة لحماية معلوماتك الشخصية. يتم تخزين بياناتك بأمان ولا يمكن الوصول إليها إلا للموظفين المصرح لهم.
                 </p>
               </div>
 
               <div>
-                <h2 className="text-2xl font-bold mb-4">6. Partage des données</h2>
+                <h2 className="text-2xl font-bold mb-4">6. مشاركة البيانات</h2>
                 <p className="text-muted-foreground leading-relaxed">
-                  Nous ne vendons, n'échangeons ni ne transférons vos informations personnelles à des 
-                  tiers, sauf pour les partenaires de confiance qui nous aident à exploiter notre site web 
-                  (comme Facebook pour le suivi publicitaire), à condition qu'ils acceptent de garder ces 
-                  informations confidentielles.
+                  نحن لا نبيع أو نتاجر أو ننقل معلوماتك الشخصية إلى أطراف ثالثة، باستثناء الشركاء الموثوق بهم الذين يساعدوننا في تشغيل موقعنا الإلكتروني (مثل Facebook لتتبع الإعلانات)، شريطة أن يوافقوا على الحفاظ على سرية هذه المعلومات.
                 </p>
               </div>
 
               <div>
-                <h2 className="text-2xl font-bold mb-4">7. Vos droits</h2>
+                <h2 className="text-2xl font-bold mb-4">7. حقوقك</h2>
                 <p className="text-muted-foreground leading-relaxed mb-4">
-                  Vous avez le droit de :
+                  لديك الحق في:
                 </p>
-                <ul className="list-disc list-inside space-y-2 text-muted-foreground ml-4">
-                  <li>Accéder à vos données personnelles</li>
-                  <li>Rectifier vos données</li>
-                  <li>Supprimer vos données</li>
-                  <li>Vous opposer au traitement de vos données</li>
-                  <li>Retirer votre consentement à tout moment</li>
+                <ul className="list-disc list-inside space-y-2 text-muted-foreground mr-4">
+                  <li>الوصول إلى بياناتك الشخصية</li>
+                  <li>تصحيح بياناتك</li>
+                  <li>حذف بياناتك</li>
+                  <li>الاعتراض على معالجة بياناتك</li>
+                  <li>سحب موافقتك في أي وقت</li>
                 </ul>
               </div>
 
               <div>
-                <h2 className="text-2xl font-bold mb-4">8. Contact</h2>
+                <h2 className="text-2xl font-bold mb-4">8. الاتصال</h2>
                 <p className="text-muted-foreground leading-relaxed">
-                  Pour toute question concernant cette politique de confidentialité ou pour exercer vos 
-                  droits, contactez-nous au : <a href="tel:0607056637" className="text-primary hover:underline">0607056637</a>
+                  لأي أسئلة تتعلق بسياسة الخصوصية هذه أو لممارسة حقوقك، اتصل بنا على: <a href="tel:0607056637" className="text-primary hover:underline" dir="ltr">0607056637</a>
                 </p>
               </div>
 
               <div className="pt-6 border-t">
                 <p className="text-sm text-muted-foreground">
-                  Cette politique de confidentialité peut être mise à jour périodiquement. Nous vous 
-                  encourageons à consulter cette page régulièrement pour rester informé de nos pratiques 
-                  en matière de protection des données.
+                  قد يتم تحديث سياسة الخصوصية هذه بشكل دوري. نحن نشجعك على مراجعة هذه الصفحة بانتظام للبقاء على اطلاع بممارسات حماية البيانات الخاصة بنا.
                 </p>
               </div>
             </CardContent>

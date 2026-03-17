@@ -2,21 +2,21 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 
 const faqs = [
   {
-    question: "Les projecteurs sont-ils adaptés à l'extérieur ?",
+    question: "هل أجهزة العرض مناسبة للاستخدام الخارجي؟",
     answer:
-      "Oui, tous nos modèles extérieurs sont étanches et résistent à l'eau aux UV, à la poussière et aux températures extrêmes.",
+      "نعم، جميع موديلاتنا الخارجية مقاومة للماء والأشعة فوق البنفسجية والغبار ودرجات الحرارة القصوى.",
   },
   {
-    question: "Quel entretien est nécessaire ?",
-    answer: "Aucun entretien n'est exigé nos projecteurs ont une durée de vie élevée. 30000 heures",
+    question: "ما هي الصيانة المطلوبة؟",
+    answer: "لا تتطلب أي صيانة، أجهزة العرض لدينا لها عمر افتراضي طويل. 30,000 ساعة.",
   },
   {
-    question: "Peut-on changer le logo ?",
-    answer: "Oui, il suffit de nous envoyer votre nouveau Logo certains clients le changent selon la saison.",
+    question: "هل يمكن تغيير الشعار؟",
+    answer: "نعم، ما عليك سوى إرسال الشعار الجديد إلينا، يغيره بعض العملاء وفقًا للموسم.",
   },
   {
-    question: "Quelle est la consommation électrique ?",
-    answer: "Très faible pour la plupart des modèles 12V exactement (comme un chargeur de téléphone)",
+    question: "ما هو استهلاك الكهرباء؟",
+    answer: "منخفض جدا لمعظم الموديلات 12 فولت بالضبط (مثل شاحن الهاتف)",
   },
 ]
 
@@ -27,9 +27,9 @@ export function FAQ() {
       <div className="absolute bottom-0 right-0 w-64 h-64 bg-accent/10 rounded-full blur-3xl -z-10" />
       <div className="container mx-auto max-w-4xl">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold mb-6 text-balance">Foire aux questions (FAQ)</h2>
+          <h2 className="text-3xl md:text-5xl font-bold mb-6 text-balance">الأسئلة المتداولة (FAQ)</h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Trouvez les réponses à toutes vos questions sur nos projecteurs de logo LED
+            ابحث عن إجابات لجميع أسئلتك حول أجهزة عرض الشعارات LED الخاصة بنا
           </p>
         </div>
         <Accordion type="single" collapsible className="w-full space-y-4">

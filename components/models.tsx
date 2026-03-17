@@ -10,9 +10,9 @@ export function Models() {
       <div className="absolute inset-0 bg-gradient-to-b from-muted/30 to-background -z-10" />
       <div className="container mx-auto max-w-7xl">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-balance">
-          Nos <span className="text-gradient">modèles</span>
+          <span className="text-gradient">موديلاتنا</span>
         </h2>
-        <p className="text-center text-muted-foreground mb-12">Ce que vous trouverez chez nous</p>
+        <p className="text-center text-muted-foreground mb-12">ما ستجده لدينا</p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {products.map((model, index) => (
             <Card key={index} className="relative overflow-hidden card-hover group border-2">
@@ -32,15 +32,15 @@ export function Models() {
               </CardHeader>
               <CardContent className="space-y-4">
                 <div>
-                  <p className="text-sm font-medium text-muted-foreground">Distance</p>
+                  <p className="text-sm font-medium text-muted-foreground">المسافة</p>
                   <p className="text-base font-medium">{model.distance}</p>
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-muted-foreground">Utilisation</p>
+                  <p className="text-sm font-medium text-muted-foreground">الاستخدام</p>
                   <p className="text-base leading-relaxed">{model.usage}</p>
                 </div>
                 <Button className="w-full gradient-glow" asChild>
-                  <Link href={`/contact?produit=${model.id}`}>Commander maintenant</Link>
+                  <Link href={`/contact?produit=${model.id}`}>اطلب الآن</Link>
                 </Button>
               </CardContent>
             </Card>

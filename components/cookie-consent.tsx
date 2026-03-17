@@ -60,12 +60,12 @@ export function CookieConsent() {
             <div className="flex-1 space-y-3">
               <div className="flex items-start justify-between gap-4">
                 <div>
-                  <h3 className="text-lg font-bold mb-2">🍪 Nous utilisons des cookies</h3>
+                  <h3 className="text-lg font-bold mb-2">🍪 نحن نستخدم ملفات تعريف الارتباط</h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">
-                    Nous utilisons des cookies et des technologies similaires pour améliorer votre expérience, 
-                    analyser le trafic du site et personnaliser le contenu. En cliquant sur "Accepter", vous 
-                    consentez à l'utilisation de ces technologies, y compris Facebook Pixel pour le suivi des 
-                    conversions publicitaires.
+                    نحن نستخدم ملفات تعريف الارتباط والتقنيات المشابهة لتحسين تجربتك، 
+                    وتحليل حركة مرور الموقع وتخصيص المحتوى. من خلال النقر على "قبول"، فإنك 
+                    توافق على استخدام هذه التقنيات، بما في ذلك Facebook Pixel لتتبع 
+                    التحويلات الإعلانية.
                   </p>
                 </div>
                 <Button
@@ -84,7 +84,7 @@ export function CookieConsent() {
                   className="gradient-glow"
                   size="lg"
                 >
-                  Accepter tous les cookies
+                  قبول جميع ملفات تعريف الارتباط
                 </Button>
                 <Button
                   onClick={handleDecline}
@@ -92,14 +92,14 @@ export function CookieConsent() {
                   size="lg"
                   className="border-2"
                 >
-                  Refuser
+                  رفض
                 </Button>
               </div>
 
               <p className="text-xs text-muted-foreground">
-                Pour plus d'informations, consultez notre{" "}
+                لمزيد من المعلومات، راجع{" "}
                 <a href="/privacy" className="text-primary hover:underline">
-                  politique de confidentialité
+                  سياسة الخصوصية الخاصة بنا
                 </a>
                 .
               </p>

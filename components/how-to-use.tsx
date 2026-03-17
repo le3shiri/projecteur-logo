@@ -20,14 +20,14 @@ export function HowToUse() {
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-black uppercase tracking-widest"
           >
             <Play className="h-3 w-3 fill-current" />
-            Guide Vidéo
+            دليل فيديو
           </motion.div>
           
           <h2 className="text-5xl md:text-7xl font-black tracking-tighter leading-tight text-balance">
-            Comment <span className="text-gradient">utiliser le produit</span> ?
+            كيف <span className="text-gradient">تستخدم المنتج</span> ؟
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto font-medium leading-relaxed">
-            Découvrez en moins de 2 minutes comment transformer votre espace avec une installation simple et professionnelle.
+            اكتشف في أقل من دقيقتين كيف تحول مساحتك بتركيب بسيط واحترافي.
           </p>
         </div>
 
@@ -52,7 +52,7 @@ export function HowToUse() {
                   poster="/placeholder.svg"
                 >
                   <source src="/howto.mp4" type="video/mp4" />
-                  Votre navigateur ne supporte pas la lecture de vidéos.
+                  متصفحك لا يدعم تشغيل مقاطع الفيديو.
                 </video>
                 
                 {/* Custom Play Overlay (Optional, if video isn't auto-playing/handling its own) */}
@@ -75,8 +75,8 @@ export function HowToUse() {
                    <Zap className="h-5 w-5 text-primary" />
                 </div>
                 <div>
-                   <p className="text-xs font-black uppercase tracking-widest text-muted-foreground">Installation</p>
-                   <p className="text-sm font-black italic">Rapide & Simple</p>
+                   <p className="text-xs font-black uppercase tracking-widest text-muted-foreground">التركيب</p>
+                   <p className="text-sm font-black italic">سريع وبسيط</p>
                 </div>
               </div>
             </motion.div>
@@ -94,20 +94,20 @@ export function HowToUse() {
               {[
                 { 
                   icon: CheckCircle2, 
-                  title: "Fixation Sécurisée", 
-                  desc: "Installez le support sur n'importe quel mur ou plafond grâce à notre kit complet inclus.",
+                  title: "تثبيت آمن", 
+                  desc: "قم بتركيب الحامل على أي جدار أو سقف بفضل مجموعتنا الكاملة المرفقة.",
                   color: "text-blue-500"
                 },
                 { 
                   icon: Sparkles, 
-                  title: "Ajustement de l'Angle", 
-                  desc: "Orientez le faisceau avec précision pour un impact visuel optimal sur 360°.",
+                  title: "تعديل الزاوية", 
+                  desc: "وجّه الشعاع بدقة للحصول على تأثير بصري مثالي بزاوية 360 درجة.",
                   color: "text-primary"
                 },
                 { 
                   icon: ShieldCheck, 
-                  title: "Prêt à l'Emploi", 
-                  desc: "Branchez et projetez directement. Aucune configuration complexe requise.",
+                  title: "جاهز للاستخدام", 
+                  desc: "قم بالتوصيل والتشغيل مباشرة. لا يتطلب أي إعداد معقد.",
                   color: "text-emerald-500"
                 }
               ].map((item, i) => (
@@ -123,11 +123,6 @@ export function HowToUse() {
               ))}
             </div>
 
-            <div className="pt-6">
-               <button className="w-full py-6 rounded-2xl bg-primary text-white font-black text-sm tracking-widest shadow-2xl hover:scale-[1.02] active:scale-95 transition-all gradient-glow">
-                  VOIR LE GUIDE COMPLET (PDF)
-               </button>
-            </div>
           </motion.div>
         </div>
       </div>

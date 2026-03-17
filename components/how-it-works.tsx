@@ -7,43 +7,43 @@ import { motion } from "framer-motion"
 const steps = [
   {
     number: "01",
-    title: "Choix du modèle",
-    description: "Format, distance, puissance lumineuse et type d'éclairage selon vos besoins.",
+    title: "اختيار الموديل",
+    description: "التنسيق، المسافة، قوة الإضاءة ونوع الإضاءة حسب احتياجاتك.",
     icon: FileText,
     color: "from-blue-500 to-cyan-500"
   },
   {
     number: "02",
-    title: "Envoi de votre logo",
-    description: "Transmettez-nous votre identité visuelle au format PDF ou image haute définition.",
+    title: "إرسال شعارك",
+    description: "أرسل لنا هويتك البصرية بصيغة PDF أو صورة عالية الدقة.",
     icon: Upload,
     color: "from-purple-500 to-pink-500"
   },
   {
     number: "03",
-    title: "Personnalisation",
-    description: "Optimisation de votre design pour un rendu net et puissant sur toute surface.",
+    title: "التخصيص",
+    description: "تحسين تصميمك للحصول على عرض واضح وقوي على أي سطح.",
     icon: Palette,
     color: "from-orange-500 to-amber-500"
   },
   {
     number: "04",
-    title: "Fabrication",
-    description: "Nos Lens demandent une précision et une concentration absolue pour un résultat d'exception.",
+    title: "التصنيع",
+    description: "تتطلب عدساتنا دقة وتركيزاً مطلقين للحصول على نتيجة استثنائية.",
     icon: Cog,
     color: "from-emerald-500 to-teal-500"
   },
   {
     number: "05",
-    title: "Expédition",
-    description: "Livraison sécurisée sous 48h pour que vous puissiez profiter de votre installation rapidement.",
+    title: "الشحن",
+    description: "توصيل آمن لتتمكن من الاستمتاع بتركيبتك بسرعة.",
     icon: Truck,
     color: "from-primary to-accent"
   },
   {
     number: "06",
-    title: "Installation",
-    description: "Accompagnement et assistance pour une mise en place parfaite et un impact maximal.",
+    title: "التركيب",
+    description: "مرافقة ومساعدة لتركيب مثالي وتأثير أقصى.",
     icon: Wrench,
     color: "from-rose-500 to-orange-500"
   },
@@ -82,13 +82,13 @@ export function HowItWorks() {
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-black uppercase tracking-widest mb-4"
           >
             <Sparkles className="h-3 w-3" />
-            Processus d'Excellence
+            عملية التميز
           </motion.div>
           <h2 className="text-5xl md:text-7xl font-black tracking-tighter leading-tight">
-            Comment <span className="text-gradient">ça marche</span> ?
+            كيف <span className="text-gradient">يعمل</span> ؟
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto font-medium">
-            Un parcours fluide en 6 étapes clés, de la conception à l'illumination de votre marque.
+            مسار سلس في 6 خطوات رئيسية، من التصميم إلى إضاءة علامتك التجارية.
           </p>
         </div>
 
@@ -118,7 +118,7 @@ export function HowItWorks() {
                       </div>
                     </div>
                     <span className="text-sm font-black text-primary tracking-widest uppercase opacity-40 group-hover:opacity-100 transition-opacity">
-                      Étape {step.number}
+                      مرحلة {step.number}
                     </span>
                   </div>
                   <CardTitle className="text-2xl font-black tracking-tight group-hover:text-primary transition-colors">
@@ -148,8 +148,8 @@ export function HowItWorks() {
         >
            <button className="group relative px-8 py-4 rounded-2xl bg-secondary/50 font-black text-sm tracking-widest hover:bg-primary hover:text-white transition-all duration-500 overflow-hidden shadow-xl ring-1 ring-white/10">
               <span className="relative z-10 flex items-center gap-3">
-                DÉMARRER VOTRE PROJET 
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                ابدأ مشروعك 
+                <ArrowRight className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
               </span>
            </button>
         </motion.div>

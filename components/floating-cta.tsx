@@ -51,8 +51,8 @@ export function FloatingCTA() {
           >
             <Link href="/contact" className="flex items-center gap-3 cursor-pointer" onClick={handleCTAClick}>
               <Zap className="h-6 w-6 animate-pulse" />
-              <span className="font-extrabold">Commander maintenant</span>
-              <ArrowRight className="h-6 w-6 group-hover:translate-x-2 transition-transform duration-300" />
+              <span className="font-extrabold">اطلب الآن</span>
+              <ArrowRight className="h-6 w-6 group-hover:-translate-x-2 transition-transform duration-300 rotate-180" />
             </Link>
           </Button>
         </div>
@@ -97,7 +97,7 @@ export function FloatingCTA() {
               target="_blank" 
               rel="noopener noreferrer"
               className="flex items-center justify-center"
-              title="Contactez-nous sur WhatsApp"
+              title="اتصل بنا على الواتساب"
             >
               <MessageCircle className="h-8 w-8" />
             </a>
@@ -116,8 +116,8 @@ export function FloatingCTA() {
             <div className="flex items-center gap-3">
               <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse" />
               <div className="text-sm">
-                <p className="font-semibold">Disponible maintenant</p>
-                <p className="text-xs opacity-90">Réponse rapide garantie</p>
+                <p className="font-semibold">متاح الآن</p>
+                <p className="text-xs opacity-90">استجابة سريعة مضمونة</p>
               </div>
             </div>
           </div>

@@ -23,17 +23,17 @@ export function Footer() {
                   <img src="/logo.png" alt="Logo" className="w-14 h-auto relative z-10 group-hover:scale-110 transition-transform duration-500" />
                </div>
                <div className="flex flex-col">
-                  <span className="text-2xl font-black tracking-tighter leading-none">
+                  <span className="text-2xl font-black tracking-tighter leading-none" dir="ltr">
                      PROJECTEUR <span className="text-gradient">LOGO</span>
                   </span>
                   <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-[0.2em] leading-none mt-1">
-                     L'Excellence LED
+                     تميز LED
                   </span>
                </div>
             </Link>
             
             <p className="text-lg text-muted-foreground font-medium leading-relaxed max-w-md">
-              Nous réinventons la visibilité des marques grâce à une technologie LED de pointe. Une solution d'exception pour un impact visuel sans précédent.
+              نقوم بإعادة ابتكار ظهور العلامات التجارية من خلال تكنولوجيا LED المتطورة. حل استثنائي لتأثير بصري غير مسبوق.
             </p>
 
             <div className="flex items-center gap-4">
@@ -51,13 +51,13 @@ export function Footer() {
 
           {/* Navigation Links */}
           <div className="lg:col-span-3">
-            <h3 className="text-sm font-black uppercase tracking-widest mb-8 text-foreground/50">Navigation</h3>
+            <h3 className="text-sm font-black uppercase tracking-widest mb-8 text-foreground/50">التنقل</h3>
             <ul className="space-y-4">
               {[
-                { label: "À propos", href: "/about" },
-                { label: "Boutique LED", href: "/shop" },
-                { label: "Questions fréquentes", href: "/faq" },
-                { label: "Mentions Légales", href: "/privacy" }
+                { label: "عن الشركة", href: "/about" },
+                { label: "متجر LED", href: "/shop" },
+                { label: "الأسئلة الشائعة", href: "/faq" },
+                { label: "الشروط القانونية", href: "/privacy" }
               ].map((item) => (
                 <li key={item.label}>
                   <Link href={item.href} className="text-lg font-bold text-muted-foreground hover:text-primary transition-colors flex items-center gap-3 group">
@@ -71,15 +71,15 @@ export function Footer() {
 
           {/* Contact & Support */}
           <div className="lg:col-span-4 space-y-8">
-            <h3 className="text-sm font-black uppercase tracking-widest mb-8 text-foreground/50">Contact & Support</h3>
+            <h3 className="text-sm font-black uppercase tracking-widest mb-8 text-foreground/50">الاتصال والدعم</h3>
             <div className="space-y-6">
                <div className="flex items-start gap-4">
                   <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center shrink-0">
                      <Phone className="h-5 text-primary" />
                   </div>
                   <div>
-                     <p className="text-xs font-black text-muted-foreground uppercase tracking-widest mb-1">Téléphone Direct</p>
-                     <p className="text-xl font-black">06 07 05 66 37</p>
+                     <p className="text-xs font-black text-muted-foreground uppercase tracking-widest mb-1">الهاتف المباشر</p>
+                     <p className="text-xl font-black" dir="ltr">06 07 05 66 37</p>
                   </div>
                </div>
                <div className="flex items-start gap-4">
@@ -87,8 +87,8 @@ export function Footer() {
                      <Clock className="h-5 text-accent-foreground" />
                   </div>
                   <div>
-                     <p className="text-xs font-black text-muted-foreground uppercase tracking-widest mb-1">Disponibilité</p>
-                     <p className="text-xl font-black italic">7j/7 - 24h/24</p>
+                     <p className="text-xs font-black text-muted-foreground uppercase tracking-widest mb-1">التوفر</p>
+                     <p className="text-xl font-black italic">طوال الأسبوع - 24/24</p>
                   </div>
                </div>
             </div>
@@ -101,17 +101,17 @@ export function Footer() {
               <div className="flex items-center gap-8">
                  <div className="flex items-center gap-2 text-xs font-bold text-muted-foreground uppercase tracking-widest">
                     <ShieldCheck className="h-4 w-4 text-primary" />
-                    Garantie de satisfaction
+                    ضمان الرضا
                  </div>
                  <div className="flex items-center gap-2 text-xs font-bold text-muted-foreground uppercase tracking-widest">
                     <Sparkles className="h-4 w-4 text-primary" />
-                    Technologie Lens Pro
+                    تكنولوجيا عدسة برو
                  </div>
               </div>
               
-              <div className="text-center md:text-right">
-                 <p className="text-sm font-bold text-muted-foreground">
-                    © {new Date().getFullYear()} Projecteur Logo. <span className="text-foreground">L'Excellence LED.</span>
+              <div className="text-center md:text-left">
+                 <p className="text-sm font-bold text-muted-foreground" dir="ltr">
+                    © {new Date().getFullYear()} Projecteur Logo. <span className="text-foreground">تميز LED.</span>
                  </p>
               </div>
            </div>

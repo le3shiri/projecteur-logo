@@ -6,34 +6,80 @@ import { ContactForm } from "@/components/contact-form"
 import { useSearchParams } from "next/navigation"
 import { Suspense } from "react"
 
+import { motion } from "framer-motion"
+import { Plus, Minus, MessageCircle, Clock, ShieldCheck, Zap } from "lucide-react"
+import { useState } from "react"
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1 }
+  }
+}
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } }
+}
+
+const faqs = [
+  {
+    question: "ما هو وقت التسليم القياسي؟",
+    answer: "بعد التحقق من تصميمك البصري (الشعار)، يقوم فريقنا بإعداد جهاز العرض في 24 إلى 48 ساعة. يستغرق التوصيل بعد ذلك بين 3 إلى 5 أيام عمل.",
+    icon: Clock
+  },
+  {
+    question: "هل يمكنني تغيير الصورة المعروضة لاحقًا؟",
+    answer: "بالطبع، أجهزة العرض لدينا تستخدم عدسات زجاجية (جوبو) قابلة للتغيير، يمكنك طلب عدسات جديدة في أي وقت لتحديث عروضك أو صورتك.",
+    icon: Zap
+  },
+  {
+    question: "هل شعاري الحالي متوافق؟",
+    answer: "يمكننا تكييف أي شعار تقريبًا (PDF، AI، PNG عالي الدقة). يتكفل فريق المصممين لدينا بالتحسين مجانًا لضمان الحدة بمستوى الليزر.",
+    icon: ShieldCheck
+  },
+]
+
 function ContactContent() {
   const searchParams = useSearchParams()
   const preselectedProduct = searchParams.get("produit")
 
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen bg-background flex flex-col pt-20">
       <Header />
 
-      <section className="relative pt-32 pb-12 px-4 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-accent/5 to-background -z-10" />
-        <div className="absolute top-20 right-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl -z-10" />
-        <div className="absolute bottom-10 left-10 w-96 h-96 bg-accent/10 rounded-full blur-3xl -z-10" />
-        <div className="absolute top-1/3 left-1/4 w-64 h-64 bg-primary/5 rounded-full blur-2xl -z-10" />
+      {/* Main Contact Form Section (Self-contained) */}
+      <div className="w-full">
+        <ContactForm preselectedProduct={preselectedProduct} />
+      </div>
 
-        <div className="container mx-auto max-w-4xl text-center space-y-8">
-          <h1 className="text-5xl md:text-6xl font-bold tracking-tight">
-            Réservez votre <span className="text-gradient">Projecteur</span>
-          </h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Remplissez le formulaire ci-dessous et notre équipe vous contactera dans les plus brefs délais
-          </p>
-        </div>
-      </section>
+      {/* Dedicated FAQ Section for Contact Page */}
+      <section className="py-24 px-4 relative overflow-hidden bg-secondary/10 border-t border-border/50">
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent -z-10" />
+        
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="container mx-auto max-w-4xl"
+        >
+          <motion.div variants={itemVariants} className="text-center mb-16 space-y-4">
+            <div className="inline-flex items-center justify-center space-x-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-xs font-bold text-primary tracking-widest uppercase mx-auto">
+              <MessageCircle className="w-4 h-4 ml-2" />
+              <span>هل تحتاج إلى مزيد من المعلومات؟</span>
+            </div>
+            <h2 className="text-3xl md:text-5xl font-black tracking-tighter">الأسئلة المتداولة</h2>
+            <p className="text-muted-foreground font-medium text-lg">ابحث عن إجابات للأسئلة الأكثر شيوعًا لدينا.</p>
+          </motion.div>
 
-      <section className="pb-20 px-4">
-        <div className="container mx-auto max-w-5xl">
-          <ContactForm preselectedProduct={preselectedProduct} />
-        </div>
+          <div className="space-y-4">
+            {faqs.map((faq, index) => (
+              <FAQItem key={index} faq={faq} />
+            ))}
+          </div>
+        </motion.div>
       </section>
 
       <Footer />
@@ -41,9 +87,46 @@ function ContactContent() {
   )
 }
 
+function FAQItem({ faq }: { faq: typeof faqs[0] }) {
+  const [isOpen, setIsOpen] = useState(false)
+
+  return (
+    <motion.div 
+      variants={itemVariants}
+      className={`border border-border rounded-2xl overflow-hidden transition-all duration-300 ${isOpen ? 'bg-secondary/40 shadow-sm' : 'bg-background hover:border-primary/40 hover:bg-secondary/10'}`}
+    >
+      <button 
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-full px-6 py-6 flex items-center justify-between text-left"
+      >
+        <div className="flex items-center gap-4">
+          <div className={`p-2 rounded-xl border transition-colors ${isOpen ? 'bg-primary border-primary text-white' : 'bg-primary/5 text-primary border-primary/20'}`}>
+            <faq.icon className="w-5 h-5" />
+          </div>
+          <span className="font-bold text-lg">{faq.question}</span>
+        </div>
+        <div className={`p-1.5 rounded-full transition-colors ${isOpen ? 'bg-primary/10 text-primary' : 'bg-secondary text-muted-foreground'}`}>
+           {isOpen ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
+        </div>
+      </button>
+      
+      <motion.div 
+        initial={false}
+        animate={{ height: isOpen ? 'auto' : 0, opacity: isOpen ? 1 : 0 }}
+        transition={{ duration: 0.3, ease: 'easeInOut' }}
+        className="overflow-hidden"
+      >
+        <div className="px-6 pb-6 pt-0 text-muted-foreground font-medium pl-[4.5rem] leading-relaxed">
+          {faq.answer}
+        </div>
+      </motion.div>
+    </motion.div>
+  )
+}
+
 export default function ContactPage() {
   return (
-    <Suspense fallback={<div>Chargement...</div>}>
+    <Suspense fallback={<div>جاري التحميل...</div>}>
       <ContactContent />
     </Suspense>
   )

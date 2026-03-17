@@ -16,26 +16,26 @@ export function ProductGallery({ productImage, productName }: ProductGalleryProp
     {
       id: 1,
       src: productImage,
-      alt: `${productName} - Vue principale`,
-      title: "Vue principale",
+      alt: `${productName} - العرض الرئيسي`,
+      title: "العرض الرئيسي",
     },
     {
       id: 2,
       src: "/IMG-20251016-WA0138.jpg",
-      alt: `${productName} - Installation`,
-      title: "Installation professionnelle",
+      alt: `${productName} - التثبيت`,
+      title: "تثبيت احترافي",
     },
     {
       id: 3,
       src: "/IMG-20251016-WA0140.jpg",
-      alt: `${productName} - En action`,
-      title: "Projection en action",
+      alt: `${productName} - في العمل`,
+      title: "الإسقاط في العمل",
     },
     {
       id: 4,
       src: "/IMG-20251016-WA0145.jpg",
-      alt: `${productName} - Utilisation`,
-      title: "Projecteur en utilisation",
+      alt: `${productName} - الاستخدام`,
+      title: "جهاز العرض قيد الاستخدام",
     },
   ]
 
@@ -61,10 +61,10 @@ export function ProductGallery({ productImage, productName }: ProductGalleryProp
       <div className="container mx-auto max-w-6xl">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-bold mb-6">
-            Galerie <span className="text-gradient">Produit</span>
+            معرض <span className="text-gradient">المنتجات</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Découvrez ce projecteur sous tous les angles et en situation réelle
+            اكتشف جهاز العرض هذا من كل زاوية وفي مواقف حقيقية
           </p>
         </div>
 

@@ -7,57 +7,57 @@ import { motion } from "framer-motion"
 const benefits = [
   {
     icon: Eye,
-    title: "Visibilité Maximale",
-    description: "Attirez l'œil instantanément. 90% des passants remarquent une enseigne lumineuse en mouvement ou en projection haute définition.",
+    title: "أقصى درجات الظهور",
+    description: "اجذب الأنظار على الفور. 90% من المارة يلاحظون اللافتات الضوئية المتحركة أو الإسقاطات عالية الوضوح.",
     color: "text-primary",
     bgColor: "bg-primary/10",
   },
   {
     icon: Palette,
-    title: "Personnalisation Totale",
-    description: "Projetez n'importe quel design. Logos complexes, textes, ou motifs saisonniers, interchangeables en quelques minutes.",
+    title: "تخصيص كامل",
+    description: "اعرض أي تصميم. شعارات معقدة، نصوص، أو أنماط موسمية، قابلة للتغيير في بضع دقائق.",
     color: "text-accent-foreground",
     bgColor: "bg-accent/10",
   },
   {
     icon: Zap,
-    title: "Eco-Lumière LED",
-    description: "Consommation ultra-basse (12V/24V) pour une puissance maximale. Écologique, économique et durable.",
+    title: "إضاءة LED صديقة للبيئة",
+    description: "استهلاك منخفض جداً للطاقة (12V/24V) مع أقصى قوة. خيار بيئي واقتصادي ومستدام.",
     color: "text-primary",
     bgColor: "bg-primary/10",
   },
   {
     icon: Shield,
-    title: "Ultra Résistant",
-    description: "Certification IP65/67. Conçu pour braver les intempéries, du froid glacial aux chaleurs extrêmes.",
+    title: "مقاومة فائقة",
+    description: "حاصل على شهادة IP65/67. مصمم ليتحمل ظروف الطقس القاسية، من البرد القارس للحرارة الشديدة.",
     color: "text-accent-foreground",
     bgColor: "bg-accent/10",
   },
   {
     icon: Wrench,
-    title: "Plug & Project",
-    description: "Installation éclair. Fixation murale facilitée et branchement intuitif pour un résultat professionnel immédiat.",
+    title: "التوصيل والتشغيل",
+    description: "تركيب سريع كالبرق. تثبيت سهل على الحائط وتوصيل بديهي للحصول على نتيجة احترافية فورية.",
     color: "text-primary",
     bgColor: "bg-primary/10",
   },
   {
     icon: Award,
-    title: "Image de Marque",
-    description: "Donnez une dimension Premium à votre établissement. Modernité et distinction garanties dès le premier regard.",
+    title: "صورة العلامة التجارية",
+    description: "امنح منشأتك بُعداً فاخراً. حداثة وتميز مضمونان من النظرة الأولى.",
     color: "text-accent-foreground",
     bgColor: "bg-accent/10",
   },
   {
     icon: Sparkles,
-    title: "Polyvalence d'Usage",
-    description: "Boutiques, salons, hôtels, ou événements privés. Un projecteur pour mille occasions différentes.",
+    title: "تعدد الاستخدامات",
+    description: "المتاجر، المعارض، الفنادق، أو الفعاليات الخاصة. جهاز عرض واحد لآلاف المناسبات المختلفة.",
     color: "text-primary",
     bgColor: "bg-primary/10",
   },
   {
     icon: Ruler,
-    title: "Projection Longue Portée",
-    description: "Une netteté parfaite de 1m à 50m. Plusieurs modèles disponibles pour s'adapter à toutes vos configurations.",
+    title: "إسقاط بعيد المدى",
+    description: "دقة مثالية من 1 متر إلى 50 متراً. موديلات متعددة تتكيف مع جميع احتياجاتك.",
     color: "text-accent-foreground",
     bgColor: "bg-accent/10",
   },
@@ -99,7 +99,7 @@ export function Benefits() {
             className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-primary/5 border border-primary/20 shadow-xl shadow-primary/5"
           >
             <CheckCircle2 className="w-4 h-4 text-primary" />
-            <span className="text-xs font-black tracking-widest uppercase">Expertise & Performance</span>
+            <span className="text-xs font-black tracking-widest uppercase">الخبرة والأداء</span>
           </motion.div>
           
           <motion.h2 
@@ -108,7 +108,7 @@ export function Benefits() {
             viewport={{ once: true }}
             className="text-5xl md:text-7xl font-black tracking-tighter"
           >
-            Pourquoi <span className="text-gradient">Nous Choisir</span> ?
+            لماذا <span className="text-gradient">تختارنا</span> ؟
           </motion.h2>
           
           <motion.p 
@@ -118,7 +118,7 @@ export function Benefits() {
             transition={{ delay: 0.1 }}
             className="text-xl text-muted-foreground max-w-3xl mx-auto font-medium"
           >
-            Plus qu'un simple accessoire, nos projecteurs sont des outils de communication puissants conçus pour durer et impressionner.
+            أكثر من مجرد ملحق، أجهزة العرض لدينا هي أدوات اتصال قوية مصممة لتدوم وتبهر.
           </motion.p>
         </div>
 

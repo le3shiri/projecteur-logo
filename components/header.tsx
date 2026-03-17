@@ -39,16 +39,16 @@ export function Header() {
               <div className="absolute inset-[-4px] bg-primary/20 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity" />
               <img 
                 src="/logo.png" 
-                alt="Projecteur Logo" 
+                alt="بروجيكتور لوجو" 
                 className="w-12 h-auto object-contain relative z-10 hover:scale-110 transition-transform duration-500"
               />
             </div>
             <div className="flex flex-col">
               <span className="text-xl font-black tracking-tighter leading-none">
-                PROJECTEUR <span className="text-gradient">LOGO</span>
+                بروجيكتور <span className="text-gradient">لوجو</span>
               </span>
               <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest leading-none mt-1">
-                L'Excellence LED
+                التميز بتقنية LED
               </span>
             </div>
           </Link>
@@ -56,9 +56,9 @@ export function Header() {
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-1">
             {[
-              { label: "À propos", href: "/about" },
-              { label: "Boutique", href: "/shop", icon: ShoppingBag },
-              { label: "FAQ", href: "/faq" }
+              { label: "من نحن", href: "/about" },
+              { label: "المتجر", href: "/shop", icon: ShoppingBag },
+              { label: "أسئلة شائعة", href: "/faq" }
             ].map((item) => (
               <Link 
                 key={item.label}
@@ -68,7 +68,7 @@ export function Header() {
                 {item.icon && <item.icon className="h-4 w-4" />}
                 {item.label}
                 <motion.span 
-                  className="absolute bottom-1 left-4 right-4 h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform origin-left" 
+                  className="absolute bottom-1 left-4 right-4 h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform origin-right" 
                 />
               </Link>
             ))}
@@ -81,13 +81,13 @@ export function Header() {
                 className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 border border-white/10 hover:border-primary/50 transition-all font-bold text-xs"
               >
                 <Phone className="h-3 w-3 text-primary" />
-                06 07 05 66 37
+                <span dir="ltr">06 07 05 66 37</span>
               </a>
               
               <Button className="gradient-glow px-6 py-2.5 text-sm font-black rounded-xl shadow-xl hover:scale-105 transition-all group" asChild>
                 <Link href="/contact" className="flex items-center gap-2">
-                  Commander
-                  <Sparkles className="h-4 w-4 group-hover:rotate-12 transition-transform" />
+                  اطلب الآن
+                  <Sparkles className="h-4 w-4 group-hover:-rotate-12 transition-transform" />
                 </Link>
               </Button>
             </div>
@@ -116,9 +116,9 @@ export function Header() {
           >
             <div className="flex flex-col space-y-4">
               {[
-                { label: "À propos", href: "/about" },
-                { label: "Boutique", href: "/shop", icon: ShoppingBag },
-                { label: "FAQ", href: "/faq" }
+                { label: "من نحن", href: "/about" },
+                { label: "المتجر", href: "/shop", icon: ShoppingBag },
+                { label: "أسئلة شائعة", href: "/faq" }
               ].map((item) => (
                 <Link 
                   key={item.label}
@@ -142,12 +142,13 @@ export function Header() {
                 <div className="w-10 h-10 rounded-xl bg-accent/20 flex items-center justify-center">
                   <Phone className="h-5 w-5 text-primary" />
                 </div>
-                06 07 05 66 37
+                <span dir="ltr">06 07 05 66 37</span>
               </a>
               
               <Button className="gradient-glow py-8 text-xl font-black rounded-2xl" asChild>
                 <Link href="/contact" onClick={() => setIsMenuOpen(false)}>
-                  Commander Maintenant
+                  اطلب الآن
+
                 </Link>
               </Button>
             </div>

@@ -1,6 +1,6 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Geist, Geist_Mono } from "next/font/google"
+import { Alexandria } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import Script from "next/script"
 import { CookieConsent } from "@/components/cookie-consent"
@@ -8,12 +8,11 @@ import { FloatingCTA } from "@/components/floating-cta"
 import { Toaster } from "@/components/ui/toaster"
 import "./globals.css"
 
-const _geist = Geist({ subsets: ["latin"] })
-const _geistMono = Geist_Mono({ subsets: ["latin"] })
+const alexandria = Alexandria({ subsets: ["arabic", "latin"] })
 
 export const metadata: Metadata = {
-  title: "Projecteurs de Logo LED — Illuminez votre Marque",
-  description: "Projecteurs de logo LED professionnels et personnalisables pour illuminer votre identité visuelle",
+  title: "أجهزة عرض الشعارات بتقنية LED — أضئ علامتك التجارية",
+  description: "أجهزة عرض شعارات LED احترافية وقابلة للتخصيص لإضاءة هويتك البصرية",
   generator: "v0.app",
 }
 
@@ -23,7 +22,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="fr">
+    <html lang="ar" dir="rtl" className={alexandria.className}>
       <head>
         {/* Facebook Pixel Code */}
         <Script id="facebook-pixel" strategy="afterInteractive">
