@@ -1,88 +1,120 @@
-import { Lightbulb } from "lucide-react"
+"use client"
+
+import { Lightbulb, Phone, Mail, Clock, Instagram, Facebook, Linkedin, ShieldCheck, Sparkles } from "lucide-react"
 import Link from "next/link"
+import { motion } from "framer-motion"
 
 export function Footer() {
   return (
-    <footer className="bg-gradient-to-r from-primary to-accent text-primary-foreground py-16 px-4 relative overflow-hidden">
-      <div className="absolute top-0 left-0 w-full h-full opacity-5 -z-10" />
-      <div className="container mx-auto max-w-7xl">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div className="md:col-span-2">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 rounded-2xl bg-primary-foreground/20 flex items-center justify-center">
-                <Lightbulb className="h-7 w-7 text-primary-foreground" />
-              </div>
-              <span className="text-2xl font-bold">Projecteur Logo</span>
-            </div>
-            <p className="text-lg text-primary-foreground/90 leading-relaxed max-w-xl">
-              Illuminez votre marque avec nos projecteurs LED professionnels et personnalisables.
+    <footer className="relative bg-background border-t border-white/5 pt-24 pb-12 overflow-hidden">
+      {/* Decorative Glows */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
+      <div className="absolute bottom-[-10%] left-[-5%] w-[400px] h-[400px] bg-primary/5 rounded-full blur-[100px] -z-10" />
+      <div className="absolute top-[20%] right-[-5%] w-[400px] h-[400px] bg-accent/5 rounded-full blur-[100px] -z-10" />
+
+      <div className="container mx-auto max-w-7xl px-4 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8 mb-20">
+          
+          {/* Brand Section */}
+          <div className="lg:col-span-5 space-y-8">
+            <Link href="/" className="flex items-center gap-4 group">
+               <div className="relative">
+                  <div className="absolute inset-[-4px] bg-primary/20 rounded-full blur-md" />
+                  <img src="/logo.png" alt="Logo" className="w-14 h-auto relative z-10 group-hover:scale-110 transition-transform duration-500" />
+               </div>
+               <div className="flex flex-col">
+                  <span className="text-2xl font-black tracking-tighter leading-none">
+                     PROJECTEUR <span className="text-gradient">LOGO</span>
+                  </span>
+                  <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-[0.2em] leading-none mt-1">
+                     L'Excellence LED
+                  </span>
+               </div>
+            </Link>
+            
+            <p className="text-lg text-muted-foreground font-medium leading-relaxed max-w-md">
+              Nous réinventons la visibilité des marques grâce à une technologie LED de pointe. Une solution d'exception pour un impact visuel sans précédent.
             </p>
-            <div className="mt-6 flex items-center gap-4">
-              <div className="h-px flex-1 bg-primary-foreground/30" />
-              <span className="text-primary-foreground/70 text-sm">Innovation & Qualité</span>
-              <div className="h-px flex-1 bg-primary-foreground/30" />
+
+            <div className="flex items-center gap-4">
+               {[
+                  { icon: Instagram, href: "#" },
+                  { icon: Facebook, href: "#" },
+                  { icon: Linkedin, href: "#" }
+               ].map((social, i) => (
+                  <Link key={i} href={social.href} className="w-12 h-12 rounded-2xl bg-secondary/50 flex items-center justify-center border border-white/5 hover:border-primary/40 hover:text-primary transition-all duration-300">
+                     <social.icon className="h-5 w-5" />
+                  </Link>
+               ))}
             </div>
           </div>
 
-          <div>
-            <h3 className="font-semibold text-lg mb-6 relative inline-block">
-              Navigation
-              <span className="absolute bottom-0 left-0 w-1/2 h-0.5 bg-primary-foreground" />
-            </h3>
-            <ul className="space-y-3">
-              <li>
-                <Link href="/about" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary-foreground/50" /> À propos
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/shop"
-                  className="text-primary-foreground/80 hover:text-primary-foreground transition-colors flex items-center gap-2"
-                >
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary-foreground/50" /> Boutique
-                </Link>
-              </li>
-              <li>
-                <Link href="/faq" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary-foreground/50" /> FAQ
-                </Link>
-              </li>
-              <li>
-                <Link href="/privacy" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary-foreground/50" /> Confidentialité
-                </Link>
-              </li>
+          {/* Navigation Links */}
+          <div className="lg:col-span-3">
+            <h3 className="text-sm font-black uppercase tracking-widest mb-8 text-foreground/50">Navigation</h3>
+            <ul className="space-y-4">
+              {[
+                { label: "À propos", href: "/about" },
+                { label: "Boutique LED", href: "/shop" },
+                { label: "Questions fréquentes", href: "/faq" },
+                { label: "Mentions Légales", href: "/privacy" }
+              ].map((item) => (
+                <li key={item.label}>
+                  <Link href={item.href} className="text-lg font-bold text-muted-foreground hover:text-primary transition-colors flex items-center gap-3 group">
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary scale-0 group-hover:scale-100 transition-transform" />
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          <div>
-            <h3 className="font-semibold text-lg mb-6 relative inline-block">
-              Contact
-              <span className="absolute bottom-0 left-0 w-1/2 h-0.5 bg-primary-foreground" />
-            </h3>
-            <ul className="space-y-4 text-primary-foreground/90">
-              <li className="flex items-start gap-3">
-                <span className="mt-1 w-2 h-2 rounded-full bg-primary-foreground/50" />
-                <div>
-                  <p className="font-medium">Téléphone</p>
-                  <p className="text-lg">0607056637</p>
-                </div>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="mt-1 w-2 h-2 rounded-full bg-primary-foreground/50" />
-                <div>
-                  <p className="font-medium">Garantie</p>
-                  <p>Aucun client insatisfait</p>
-                </div>
-              </li>
-            </ul>
+          {/* Contact & Support */}
+          <div className="lg:col-span-4 space-y-8">
+            <h3 className="text-sm font-black uppercase tracking-widest mb-8 text-foreground/50">Contact & Support</h3>
+            <div className="space-y-6">
+               <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center shrink-0">
+                     <Phone className="h-5 text-primary" />
+                  </div>
+                  <div>
+                     <p className="text-xs font-black text-muted-foreground uppercase tracking-widest mb-1">Téléphone Direct</p>
+                     <p className="text-xl font-black">06 07 05 66 37</p>
+                  </div>
+               </div>
+               <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-2xl bg-accent/10 flex items-center justify-center shrink-0">
+                     <Clock className="h-5 text-accent-foreground" />
+                  </div>
+                  <div>
+                     <p className="text-xs font-black text-muted-foreground uppercase tracking-widest mb-1">Disponibilité</p>
+                     <p className="text-xl font-black italic">7j/7 - 24h/24</p>
+                  </div>
+               </div>
+            </div>
           </div>
         </div>
 
-        <div className="mt-16 pt-8 border-t border-primary-foreground/30 text-center text-primary-foreground/70">
-          <p className="text-lg">© {new Date().getFullYear()} Projecteur Logo. Tous droits réservés.</p>
-          <p className="mt-2 text-sm">Innovation LED pour une visibilité exceptionnelle</p>
+        {/* Bottom Banner */}
+        <div className="pt-12 border-t border-white/5">
+           <div className="flex flex-col md:flex-row justify-between items-center gap-8">
+              <div className="flex items-center gap-8">
+                 <div className="flex items-center gap-2 text-xs font-bold text-muted-foreground uppercase tracking-widest">
+                    <ShieldCheck className="h-4 w-4 text-primary" />
+                    Garantie de satisfaction
+                 </div>
+                 <div className="flex items-center gap-2 text-xs font-bold text-muted-foreground uppercase tracking-widest">
+                    <Sparkles className="h-4 w-4 text-primary" />
+                    Technologie Lens Pro
+                 </div>
+              </div>
+              
+              <div className="text-center md:text-right">
+                 <p className="text-sm font-bold text-muted-foreground">
+                    © {new Date().getFullYear()} Projecteur Logo. <span className="text-foreground">L'Excellence LED.</span>
+                 </p>
+              </div>
+           </div>
         </div>
       </div>
     </footer>

@@ -3,7 +3,8 @@
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogTrigger, DialogTitle } from "@/components/ui/dialog"
-import { ZoomIn } from "lucide-react"
+import { ZoomIn, Camera, Sparkles } from "lucide-react"
+import { motion, AnimatePresence } from "framer-motion"
 
 const galleryImages = [
   "/IMG-20251017-WA0016.jpg",
@@ -55,66 +56,116 @@ export function Gallery() {
   }
 
   return (
-    <section className="py-24 px-4 bg-gradient-to-b from-background to-muted/20 relative overflow-hidden">
-      {/* Decorative background elements */}
-      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
-      <div className="absolute top-40 -left-20 w-96 h-96 bg-primary/5 rounded-full blur-[100px] pointer-events-none" />
-      <div className="absolute bottom-40 -right-20 w-96 h-96 bg-accent/5 rounded-full blur-[100px] pointer-events-none" />
+    <section className="py-32 px-4 relative overflow-hidden bg-background">
+      {/* Abstract Background Visuals */}
+      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+      <div className="absolute top-[20%] right-[-10%] w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-[20%] left-[-10%] w-[500px] h-[500px] bg-accent/5 rounded-full blur-[120px] pointer-events-none" />
 
-      <div className="container mx-auto max-w-7xl">
-        <div className="text-center mb-16 space-y-4">
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
-            Nos <span className="text-primary bg-clip-text text-transparent bg-gradient-to-r from-primary to-purple-600">Réalisations</span>
-          </h2>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Plongez dans notre portfolio de projections lumineuses. Une collection de designs innovants et d'installations percutantes.
-          </p>
+      <div className="container mx-auto max-w-7xl relative z-10">
+        <div className="text-center mb-20 space-y-6">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/5 border border-primary/20 text-xs font-black tracking-widest text-primary uppercase"
+          >
+            <Camera className="w-3 h-3" />
+            VOTRE MARQUE EN LUMIÈRE
+          </motion.div>
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-5xl md:text-7xl font-black tracking-tighter"
+          >
+            Galerie de <span className="text-gradient">Projections</span>
+          </motion.h2>
+          <motion.p 
+             initial={{ opacity: 0, y: 20 }}
+             whileInView={{ opacity: 1, y: 0 }}
+             viewport={{ once: true }}
+             transition={{ delay: 0.1 }}
+            className="text-xl text-muted-foreground max-w-3xl mx-auto font-medium"
+          >
+            Découvrez comment nous transformons les espaces de nos clients avec des solutions de projection LED haute définition.
+          </motion.p>
         </div>
 
-        <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 space-y-4 pb-8">
-          {galleryImages.slice(0, visibleCount).map((image, index) => (
-            <div key={index} className="break-inside-avoid group relative">
-              <Dialog>
-                <DialogTrigger asChild>
-                  <div className="relative overflow-hidden rounded-xl cursor-zoom-in bg-muted shadow-sm hover:shadow-xl transition-all duration-500 border border-muted/50">
-                    <img
-                      src={image}
-                      alt={`Réalisation Projecteur Logo ${index + 1}`}
-                      className="w-full h-auto object-cover transform transition-transform duration-700 group-hover:scale-110"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
-                      <div className="bg-white/10 backdrop-blur-md p-3 rounded-full text-white ring-1 ring-white/20">
-                        <ZoomIn className="w-6 h-6" />
+        <motion.div 
+          layout
+          className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-6 space-y-6 pb-12"
+        >
+          <AnimatePresence mode="popLayout">
+            {galleryImages.slice(0, visibleCount).map((image, index) => (
+              <motion.div
+                layout
+                key={image}
+                initial={{ opacity: 0, scale: 0.8, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.8 }}
+                transition={{ duration: 0.5, delay: (index % 12) * 0.05 }}
+                className="break-inside-avoid group relative"
+              >
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <div className="relative overflow-hidden rounded-[24px] cursor-zoom-in group-hover:shadow-[0_20px_40px_-15px_rgba(var(--primary),0.3)] transition-all duration-700 bg-secondary/50 border border-white/10 ring-1 ring-white/5">
+                      <motion.img
+                        whileHover={{ scale: 1.08 }}
+                        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                        src={image}
+                        alt={`Projection ${index + 1}`}
+                        className="w-full h-auto object-cover"
+                        loading="lazy"
+                      />
+                      
+                      {/* Premium Overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-6">
+                        <div className="translate-y-4 group-hover:translate-y-0 transition-transform duration-500 flex items-center justify-between">
+                          <div className="flex items-center gap-2">
+                            <div className="w-8 h-8 rounded-full bg-primary/20 backdrop-blur-md flex items-center justify-center border border-white/20">
+                              <Sparkles className="w-4 h-4 text-primary-foreground" />
+                            </div>
+                            <span className="text-sm font-bold text-white tracking-tight">Installation Pro</span>
+                          </div>
+                          <div className="bg-white/10 backdrop-blur-md p-2 rounded-xl text-white border border-white/20">
+                            <ZoomIn className="w-5 h-5" />
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </DialogTrigger>
-                <DialogContent className="max-w-5xl w-[95vw] p-1 bg-transparent border-none shadow-2xl backdrop-blur-sm">
-                  <DialogTitle className="sr-only">Vue détaillée de la réalisation</DialogTitle>
-                  <div className="relative rounded-lg overflow-hidden bg-black/90 aspect-auto flex items-center justify-center ring-1 ring-white/10">
-                    <img
-                      src={image}
-                      alt={`Réalisation Projecteur Logo ${index + 1}`}
-                      className="w-full h-auto max-h-[85vh] object-contain"
-                    />
-                  </div>
-                </DialogContent>
-              </Dialog>
-            </div>
-          ))}
-        </div>
+                  </DialogTrigger>
+                  <DialogContent className="max-w-5xl w-[95vw] p-2 bg-transparent border-none shadow-none backdrop-blur-xl">
+                    <DialogTitle className="sr-only">Vue zoomée</DialogTitle>
+                    <div className="relative rounded-[32px] overflow-hidden bg-black/40 ring-1 ring-white/20 flex items-center justify-center p-1">
+                      <img
+                        src={image}
+                        alt="Zoom projection"
+                        className="w-full h-auto max-h-[90vh] object-contain rounded-[28px]"
+                      />
+                    </div>
+                  </DialogContent>
+                </Dialog>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
 
         {visibleCount < galleryImages.length && (
-          <div className="mt-12 text-center">
+          <motion.div 
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            className="mt-20 text-center"
+          >
             <Button 
               onClick={showMore} 
               size="lg" 
-              className="px-8 py-6 text-lg rounded-full shadow-lg shadow-primary/20 hover:shadow-primary/40 hover:-translate-y-1 transition-all duration-300"
+              className="gradient-glow px-12 py-8 text-xl font-black rounded-2xl shadow-2xl transition-all active:scale-95 group"
             >
-              Voir plus de réalisations
+              VOIR PLUS DE RÉALISATIONS
+              <Sparkles className="ml-2 h-6 w-6 group-hover:rotate-12 transition-transform" />
             </Button>
-          </div>
+          </motion.div>
         )}
       </div>
     </section>

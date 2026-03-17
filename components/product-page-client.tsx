@@ -4,9 +4,10 @@ import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
-import { ArrowRight, Check, Zap, Shield, Sparkles, ChevronLeft, ChevronRight } from "lucide-react"
+import { ArrowRight, Check, Zap, Shield, Sparkles, ChevronLeft, ChevronRight, Star, Clock, Trophy } from "lucide-react"
 import Link from "next/link"
 import { trackViewContent, trackInitiateCheckout } from "@/lib/facebook-pixel"
+import { motion, AnimatePresence } from "framer-motion"
 
 interface Product {
   id: string
@@ -27,8 +28,24 @@ interface ProductPageClientProps {
   product: Product
 }
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1, delayChildren: 0.3 }
+  }
+}
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
+  }
+}
+
 export function ProductPageClient({ product }: ProductPageClientProps) {
-  // Multiple images for the product - using real installation photos
   const productImages = [
     product.image,
     "/IMG-20251016-WA0138.jpg",
@@ -38,194 +55,260 @@ export function ProductPageClient({ product }: ProductPageClientProps) {
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
 
-  // Track product view when component mounts
   useEffect(() => {
     trackViewContent(product.name, product.id, product.priceHT)
   }, [product])
 
-  // Handle Commander button click
   const handleCommanderClick = () => {
     trackInitiateCheckout(product.name, product.id, product.priceHT)
   }
 
-  // Navigate to next image
   const nextImage = () => {
     setCurrentImageIndex((prev) => (prev + 1) % productImages.length)
   }
 
-  // Navigate to previous image
   const prevImage = () => {
     setCurrentImageIndex((prev) => (prev - 1 + productImages.length) % productImages.length)
   }
 
   return (
-    <>
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-20 px-4 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-accent/5 to-background -z-10" />
-        <div className="absolute top-20 right-10 w-96 h-96 bg-primary/10 rounded-full blur-3xl -z-10" />
+    <div className="bg-background">
+      {/* Product Hero Section */}
+      <section className="relative pt-40 pb-24 px-4 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-accent/5 to-background -z-20" />
+        <div className="absolute top-[10%] right-[-5%] w-[600px] h-[600px] bg-primary/10 rounded-full blur-[120px] -z-10 animate-pulse" />
 
-        <div className="container mx-auto max-w-7xl">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-8">
-              <Badge className={`${product.badgeColor} text-lg px-6 py-3`}>{product.badge}</Badge>
-              <h1 className="text-5xl md:text-6xl font-bold tracking-tight">
-                <span className="text-gradient">{product.name}</span>
-              </h1>
-              <p className="text-xl text-muted-foreground leading-relaxed max-w-2xl">{product.description}</p>
+        <div className="container mx-auto max-w-7xl relative z-10">
+          <div className="grid lg:grid-cols-2 gap-20 items-start">
+            
+            {/* Left: Product Images */}
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+              className="space-y-6"
+            >
+              <div className="relative group aspect-square rounded-[40px] overflow-hidden bg-secondary shadow-2xl border border-white/10 ring-1 ring-white/5">
+                <AnimatePresence mode="wait">
+                  <motion.img
+                    key={currentImageIndex}
+                    initial={{ opacity: 0, scale: 1.1 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 1.05 }}
+                    transition={{ duration: 0.8, ease: "easeInOut" }}
+                    src={productImages[currentImageIndex]}
+                    alt={product.name}
+                    className="w-full h-full object-cover"
+                  />
+                </AnimatePresence>
 
-              <div className="flex flex-wrap gap-4 pt-6">
-                <div className="flex items-center gap-3 px-6 py-3 bg-primary/10 rounded-xl pulse-glow">
-                  <Zap className="h-6 w-6 text-primary" />
-                  <div>
-                    <p className="text-xs text-muted-foreground">Puissance</p>
-                    <p className="font-semibold text-lg">{product.power}</p>
-                  </div>
+                {/* Overlays */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
+                
+                {/* Navigation */}
+                <div className="absolute inset-x-6 top-1/2 -translate-y-1/2 flex justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    className="w-14 h-14 rounded-2xl bg-white/10 backdrop-blur-xl border-white/20 hover:bg-white/20 text-white"
+                    onClick={prevImage}
+                  >
+                    <ChevronLeft className="h-8 w-8" />
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    className="w-14 h-14 rounded-2xl bg-white/10 backdrop-blur-xl border-white/20 hover:bg-white/20 text-white"
+                    onClick={nextImage}
+                  >
+                    <ChevronRight className="h-8 w-8" />
+                  </Button>
                 </div>
-                <div className="flex items-center gap-3 px-6 py-3 bg-accent/10 rounded-xl pulse-glow">
-                  <Sparkles className="h-6 w-6 text-accent-foreground" />
-                  <div>
-                    <p className="text-xs text-muted-foreground">Distance</p>
-                    <p className="font-semibold text-lg">{product.distance}</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3 px-6 py-3 bg-secondary/10 rounded-xl pulse-glow">
-                  <Shield className="h-6 w-6 text-secondary-foreground" />
-                  <div>
-                    <p className="text-xs text-muted-foreground">Durée de vie</p>
-                    <p className="font-semibold text-lg">30 000 heures</p>
-                  </div>
-                </div>
-              </div>
 
-              <Button size="lg" className="gradient-glow text-lg mt-8 px-8 py-6 rounded-full" asChild>
-                <Link href={`/contact?produit=${product.id}`} onClick={handleCommanderClick}>
-                  Commander maintenant <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
-              </Button>
-            </div>
-
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 rounded-3xl blur-2xl" />
-              <div className="relative rounded-3xl shadow-2xl w-full h-auto glow-effect overflow-hidden">
-                <img
-                  src={productImages[currentImageIndex] || "/placeholder.svg"}
-                  alt={`Projecteur ${product.name} - Image ${currentImageIndex + 1}`}
-                  className="w-full h-auto object-cover transition-all duration-300"
-                />
-
-                {/* Navigation Buttons */}
-                <Button
-                  variant="outline"
-                  size="icon"
-                  className="absolute left-4 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm border-2 hover:bg-background z-10"
-                  onClick={prevImage}
-                >
-                  <ChevronLeft className="h-6 w-6" />
-                </Button>
-                <Button
-                  variant="outline"
-                  size="icon"
-                  className="absolute right-4 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm border-2 hover:bg-background z-10"
-                  onClick={nextImage}
-                >
-                  <ChevronRight className="h-6 w-6" />
-                </Button>
-
-                {/* Image Indicators */}
-                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
-                  {productImages.map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setCurrentImageIndex(index)}
-                      className={`h-2 rounded-full transition-all duration-300 ${
-                        currentImageIndex === index ? "w-8 bg-primary" : "w-2 bg-white/50"
-                      }`}
-                      aria-label={`Go to image ${index + 1}`}
-                    />
-                  ))}
+                {/* Counter */}
+                <div className="absolute bottom-8 right-8 cursor-default">
+                   <div className="bg-background/40 backdrop-blur-xl border border-white/20 rounded-2xl px-5 py-2 text-white font-black text-sm tracking-widest">
+                     {currentImageIndex + 1} <span className="text-white/40">/</span> {productImages.length}
+                   </div>
                 </div>
               </div>
 
-              {/* Image Counter */}
-              <div className="absolute -bottom-4 right-4 bg-background/95 backdrop-blur-md border-2 border-primary/20 rounded-xl px-4 py-2 shadow-lg">
-                <p className="text-sm font-semibold text-primary">
-                  {currentImageIndex + 1} / {productImages.length}
+              {/* Thumbnails */}
+              <div className="flex gap-4 overflow-x-auto pb-2 scrollbar-hide">
+                {productImages.map((img, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setCurrentImageIndex(idx)}
+                    className={`relative flex-shrink-0 w-24 h-24 rounded-2xl overflow-hidden border-2 transition-all duration-300 ${
+                      currentImageIndex === idx ? "border-primary scale-105 shadow-lg" : "border-transparent opacity-60 hover:opacity-100"
+                    }`}
+                  >
+                    <img src={img} alt="Thumb" className="w-full h-full object-cover" />
+                  </button>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Right: Product Details */}
+            <motion.div 
+               variants={containerVariants}
+               initial="hidden"
+               animate="visible"
+               className="space-y-10 lg:sticky lg:top-32"
+            >
+              <motion.div variants={itemVariants} className="space-y-4">
+                <Badge className={`${product.badgeColor} px-6 py-2 rounded-full text-xs font-black tracking-widest uppercase border-none shadow-lg`}>
+                   <Star className="w-3 h-3 mr-2 fill-current" />
+                   {product.badge}
+                </Badge>
+                <h1 className="text-6xl md:text-7xl font-black tracking-tighter leading-tight">
+                  <span className="text-gradient">{product.name}</span>
+                </h1>
+                <p className="text-2xl text-muted-foreground font-medium leading-relaxed">
+                  {product.description}
                 </p>
-              </div>
-            </div>
+              </motion.div>
+
+              {/* Stats Grid */}
+              <motion.div variants={itemVariants} className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                {[
+                  { icon: Zap, label: "Puissance", value: product.power, sub: "Lumen Pro", color: "text-amber-500" },
+                  { icon: Sparkles, label: "Portée Max", value: product.distance, sub: "Clarté HD", color: "text-primary" },
+                  { icon: Shield, label: "Garantie", value: "24 Mois", sub: "Échange à neuf", color: "text-blue-500" }
+                ].map((stat, i) => (
+                  <div key={i} className="bg-secondary/40 backdrop-blur-md rounded-[28px] p-6 border border-white/5 group hover:border-primary/30 transition-all duration-500">
+                    <stat.icon className={`w-6 h-6 ${stat.color} mb-4 group-hover:scale-110 transition-transform`} />
+                    <p className="text-xs font-bold text-muted-foreground uppercase tracking-widest mb-1">{stat.label}</p>
+                    <p className="text-xl font-black">{stat.value}</p>
+                    <p className="text-[10px] font-bold text-muted-foreground/60 mt-1">{stat.sub}</p>
+                  </div>
+                ))}
+              </motion.div>
+
+              <motion.div variants={itemVariants} className="space-y-6">
+                <div className="flex items-baseline gap-4">
+                  <p className="text-6xl font-black text-foreground">{product.price}</p>
+                  <p className="text-lg font-bold text-muted-foreground uppercase tracking-wider">TVA Incluse</p>
+                </div>
+
+                <div className="flex flex-col sm:flex-row gap-4 pt-4">
+                  <Button size="lg" className="gradient-glow h-20 px-12 rounded-[24px] text-xl font-black shadow-2xl group flex-1" asChild>
+                    <Link href={`/contact?produit=${product.id}`} onClick={handleCommanderClick}>
+                      COMMANDER MAINTENANT
+                      <ArrowRight className="ml-3 h-6 w-6 group-hover:translate-x-2 transition-transform" />
+                    </Link>
+                  </Button>
+                </div>
+
+                <div className="flex items-center gap-8 text-sm font-bold text-muted-foreground pt-4">
+                   <div className="flex items-center gap-2">
+                     <Clock className="w-5 h-5 text-primary" />
+                     Expédié en 48h
+                   </div>
+                   <div className="flex items-center gap-2">
+                     <Trophy className="w-5 h-5 text-primary" />
+                     Meilleur Prix Garanti
+                   </div>
+                </div>
+              </motion.div>
+            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Features Section */}
-      <section className="py-20 px-4 bg-muted/30">
-        <div className="container mx-auto max-w-7xl">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold mb-6">
-              Caractéristiques <span className="text-gradient">principales</span>
+      {/* Modern Features Section */}
+      <section className="py-32 px-4 relative overflow-hidden bg-secondary/20">
+        <div className="container mx-auto max-w-7xl relative z-10">
+          <div className="text-center mb-24 space-y-6">
+            <h2 className="text-5xl md:text-7xl font-black tracking-tighter">
+              Performance <span className="text-gradient">Sans Compromis</span>
             </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Découvrez les fonctionnalités avancées de ce projecteur LED professionnel
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto font-medium">
+              Une ingénierie de précision pour un résultat visuel qui dépasse vos attentes.
             </p>
           </div>
+
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {product.features.map((feature, index) => (
-              <Card key={index} className="card-hover border-2 bg-background/50 backdrop-blur-sm">
-                <CardContent className="flex items-start gap-4 p-6">
-                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center pulse-glow">
-                    <Check className="h-6 w-6 text-primary" />
-                  </div>
-                  <p className="text-base font-medium leading-relaxed mt-1">{feature}</p>
-                </CardContent>
-              </Card>
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+              >
+                <Card className="h-full border-none bg-background/50 backdrop-blur-xl rounded-[32px] p-4 group hover:shadow-2xl transition-all duration-500 ring-1 ring-white/10">
+                  <CardContent className="flex flex-col gap-6 p-6">
+                    <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center group-hover:scale-110 transition-transform shadow-inner">
+                      <Check className="h-7 w-7 text-primary" />
+                    </div>
+                    <p className="text-xl font-bold leading-tight group-hover:text-primary transition-colors">{feature}</p>
+                  </CardContent>
+                </Card>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Specifications Section */}
-      <section className="py-20 px-4">
-        <div className="container mx-auto max-w-5xl">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold mb-6">
-              Spécifications <span className="text-gradient">techniques</span>
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Toutes les caractéristiques techniques détaillées de ce modèle
-            </p>
+      {/* Tech Specs Section */}
+      <section className="py-32 px-4 bg-background">
+        <div className="container mx-auto max-w-4xl">
+          <div className="text-center mb-20">
+            <h2 className="text-5xl font-black tracking-tighter mb-4 text-gradient">Fiche Technique</h2>
+            <div className="h-1.5 w-24 bg-primary mx-auto rounded-full" />
           </div>
-          <Card className="border-2 bg-background/50 backdrop-blur-sm">
-            <CardContent className="p-8">
-              <div className="space-y-6">
-                {product.specifications.map((spec, index) => (
-                  <div key={index} className="flex items-center justify-between py-6 border-b border-primary/10 last:border-b-0">
-                    <span className="text-lg font-medium text-muted-foreground">{spec.label}</span>
-                    <span className="text-lg font-bold text-primary">{spec.value}</span>
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
+          <div className="grid gap-1">
+            {product.specifications.map((spec, index) => (
+              <motion.div 
+                key={index}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.05 }}
+                className="flex items-center justify-between py-8 px-10 rounded-[24px] hover:bg-secondary/30 transition-colors border-b border-primary/5 last:border-0 group"
+              >
+                <span className="text-xl font-bold text-muted-foreground group-hover:text-foreground transition-colors">{spec.label}</span>
+                <span className="text-xl font-black text-primary">{spec.value}</span>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 px-4 bg-gradient-to-br from-primary/10 to-accent/10 relative overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-accent/5 to-transparent -z-10" />
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl -z-10" />
-        <div className="container mx-auto max-w-4xl text-center space-y-8">
-          <h2 className="text-3xl md:text-5xl font-bold">Prêt à illuminer votre marque ?</h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Commandez votre projecteur {product.name} dès aujourd'hui et bénéficiez de notre garantie satisfaction.
-          </p>
-          <Button size="lg" className="gradient-glow text-lg px-8 py-6 rounded-full" asChild>
-            <Link href={`/contact?produit=${product.id}`} onClick={handleCommanderClick}>
-              Commander ce modèle <ArrowRight className="ml-2 h-5 w-5" />
-            </Link>
-          </Button>
+      {/* Massive CTA */}
+      <section className="py-40 px-4 relative overflow-hidden">
+        <div className="absolute inset-0 bg-primary/5 -z-10" />
+        <div className="container mx-auto max-w-5xl text-center space-y-12">
+           <motion.div
+             initial={{ opacity: 0, scale: 0.9 }}
+             whileInView={{ opacity: 1, scale: 1 }}
+             viewport={{ once: true }}
+             className="space-y-6"
+           >
+             <h2 className="text-6xl md:text-8xl font-black tracking-tighter leading-none text-balance">
+               Prêt à révolutionner <br /> 
+               <span className="text-gradient">votre façade ?</span>
+             </h2>
+             <p className="text-2xl text-muted-foreground max-w-3xl mx-auto font-medium">
+               Commandez votre {product.name} et recevez votre visuel personnalisé sous 48h.
+             </p>
+           </motion.div>
+           
+           <motion.div
+             initial={{ opacity: 0, y: 20 }}
+             whileInView={{ opacity: 1, y: 0 }}
+             transition={{ delay: 0.2 }}
+             viewport={{ once: true }}
+           >
+             <Button size="lg" className="gradient-glow h-24 px-16 rounded-[30px] text-2xl font-black shadow-3xl hover:scale-105 active:scale-95 transition-all" asChild>
+               <Link href={`/contact?produit=${product.id}`}>
+                 CONFIGURER VOTRE PROJET
+               </Link>
+             </Button>
+           </motion.div>
         </div>
       </section>
-    </>
+    </div>
   )
 }

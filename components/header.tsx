@@ -1,9 +1,10 @@
 "use client"
 
-import { Lightbulb, Menu, X, Phone, ShoppingBag } from "lucide-react"
+import { Lightbulb, Menu, X, Phone, ShoppingBag, Sparkles } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { useState, useEffect } from "react"
+import { motion, AnimatePresence } from "framer-motion"
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -18,127 +19,141 @@ export function Header() {
   }, [])
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      isScrolled 
-        ? "bg-background/98 backdrop-blur-xl border-b-2 border-primary/30 shadow-lg shadow-primary/5" 
-        : "bg-background/95 backdrop-blur-md border-b border-primary/20"
-    }`}>
-      <div className="container mx-auto px-4 py-4">
-        <div className="flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-3 hover:scale-105 transition-transform duration-300 group">
-             <div className="flex items-center justify-center relative">
-              <div className="absolute inset-0 bg-primary/20 rounded-full blur-md group-hover:blur-lg transition-all" />
+    <header 
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        isScrolled 
+          ? "py-3" 
+          : "py-6"
+      }`}
+    >
+      <div className="container mx-auto px-4">
+        <div 
+          className={`flex items-center justify-between px-6 py-3 rounded-2xl transition-all duration-500 ${
+            isScrolled 
+              ? "bg-background/40 backdrop-blur-2xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.1)] ring-1 ring-white/10" 
+              : "bg-transparent border border-transparent shadow-none"
+          }`}
+        >
+          <Link href="/" className="flex items-center gap-3 group">
+            <div className="relative">
+              <div className="absolute inset-[-4px] bg-primary/20 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity" />
               <img 
                 src="/logo.png" 
                 alt="Projecteur Logo" 
-                className="w-14 h-auto object-contain relative z-10"
+                className="w-12 h-auto object-contain relative z-10 hover:scale-110 transition-transform duration-500"
               />
             </div>
-            <span className="text-2xl font-bold tracking-tight">
-              Projecteur <span className="text-gradient">Logo</span>
-            </span>
+            <div className="flex flex-col">
+              <span className="text-xl font-black tracking-tighter leading-none">
+                PROJECTEUR <span className="text-gradient">LOGO</span>
+              </span>
+              <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest leading-none mt-1">
+                L'Excellence LED
+              </span>
+            </div>
           </Link>
           
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-2">
-            <Link 
-              href="/about" 
-              className="px-5 py-2.5 text-sm font-semibold hover:text-primary transition-all duration-300 relative group rounded-lg hover:bg-primary/5"
-            >
-              À propos
-              <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-primary to-accent transition-all duration-300 group-hover:w-3/4" />
-            </Link>
-            <Link 
-              href="/shop" 
-              className="px-5 py-2.5 text-sm font-semibold hover:text-primary transition-all duration-300 relative group rounded-lg hover:bg-primary/5 flex items-center gap-2"
-            >
-              <ShoppingBag className="h-4 w-4" />
-              Boutique
-              <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-primary to-accent transition-all duration-300 group-hover:w-3/4" />
-            </Link>
-            <Link 
-              href="/faq" 
-              className="px-5 py-2.5 text-sm font-semibold hover:text-primary transition-all duration-300 relative group rounded-lg hover:bg-primary/5"
-            >
-              FAQ
-              <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-primary to-accent transition-all duration-300 group-hover:w-3/4" />
-            </Link>
+          <nav className="hidden lg:flex items-center gap-1">
+            {[
+              { label: "À propos", href: "/about" },
+              { label: "Boutique", href: "/shop", icon: ShoppingBag },
+              { label: "FAQ", href: "/faq" }
+            ].map((item) => (
+              <Link 
+                key={item.label}
+                href={item.href} 
+                className="px-4 py-2 text-sm font-bold hover:text-primary transition-all relative group rounded-xl hover:bg-white/5 flex items-center gap-2"
+              >
+                {item.icon && <item.icon className="h-4 w-4" />}
+                {item.label}
+                <motion.span 
+                  className="absolute bottom-1 left-4 right-4 h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform origin-left" 
+                />
+              </Link>
+            ))}
             
-            {/* Phone Button */}
-            <Button 
-              variant="outline" 
-              className="ml-2 border-2 border-primary/30 hover:border-primary hover:bg-primary/10 transition-all duration-300 text-foreground hover:text-foreground"
-              asChild
-            >
-              <a href="tel:0607056637"  className="flex items-center gap-2 text-foreground hover:text-foreground">
-                <Phone className="h-4 w-4" />
-                <span className="hidden xl:inline">0607056637</span>
+            <div className="w-px h-6 bg-white/10 mx-4" />
+
+            <div className="flex items-center gap-3">
+              <a 
+                href="tel:0607056637" 
+                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 border border-white/10 hover:border-primary/50 transition-all font-bold text-xs"
+              >
+                <Phone className="h-3 w-3 text-primary" />
+                06 07 05 66 37
               </a>
-            </Button>
-            
-            {/* Commander Button */}
-            <Button className="gradient-glow ml-2 px-6 py-2.5 text-base font-bold rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300" asChild>
-              <Link href="/contact">Commander</Link>
-            </Button>
+              
+              <Button className="gradient-glow px-6 py-2.5 text-sm font-black rounded-xl shadow-xl hover:scale-105 transition-all group" asChild>
+                <Link href="/contact" className="flex items-center gap-2">
+                  Commander
+                  <Sparkles className="h-4 w-4 group-hover:rotate-12 transition-transform" />
+                </Link>
+              </Button>
+            </div>
           </nav>
           
           {/* Mobile Menu Button */}
           <Button 
             variant="ghost" 
             size="icon" 
-            className="lg:hidden text-foreground hover:bg-primary/10 border-2 border-transparent hover:border-primary/30 transition-all"
+            className="lg:hidden rounded-xl hover:bg-white/5 border border-white/10 transition-all"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
-            {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </Button>
         </div>
-        
-        {/* Mobile Navigation */}
+      </div>
+      
+      {/* Mobile Navigation */}
+      <AnimatePresence>
         {isMenuOpen && (
-          <nav className="lg:hidden py-6 border-t-2 border-primary/20 mt-4 animate-in slide-in-from-top-2 duration-300 bg-gradient-to-b from-primary/5 to-transparent rounded-b-2xl">
-            <div className="flex flex-col space-y-2">
-              <Link 
-                href="/about" 
-                className="px-6 py-3 text-base font-semibold hover:text-primary hover:bg-primary/10 transition-all rounded-lg mx-2"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                À propos
-              </Link>
-              <Link 
-                href="/shop" 
-                className="px-6 py-3 text-base font-semibold hover:text-primary hover:bg-primary/10 transition-all rounded-lg mx-2 flex items-center gap-2"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                <ShoppingBag className="h-5 w-5" />
-                Boutique
-              </Link>
-              <Link 
-                href="/faq" 
-                className="px-6 py-3 text-base font-semibold hover:text-primary hover:bg-primary/10 transition-all rounded-lg mx-2"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                FAQ
-              </Link>
+          <motion.nav 
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="absolute top-full left-4 right-4 mt-4 py-8 px-6 bg-background/80 backdrop-blur-2xl border border-white/10 rounded-[32px] shadow-2xl lg:hidden z-50"
+          >
+            <div className="flex flex-col space-y-4">
+              {[
+                { label: "À propos", href: "/about" },
+                { label: "Boutique", href: "/shop", icon: ShoppingBag },
+                { label: "FAQ", href: "/faq" }
+              ].map((item) => (
+                <Link 
+                  key={item.label}
+                  href={item.href} 
+                  className="flex items-center gap-4 p-4 text-xl font-black hover:text-primary hover:bg-white/5 transition-all rounded-2xl"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                    {item.icon ? <item.icon className="h-5 w-5" /> : <Sparkles className="h-5 w-5" />}
+                  </div>
+                  {item.label}
+                </Link>
+              ))}
               
-              {/* Mobile Phone Button */}
+              <div className="h-px bg-white/10 my-2" />
+              
               <a 
                 href="tel:0607056637" 
-                className="px-6 py-3 text-base font-semibold text-foreground hover:text-foreground hover:bg-primary/10 transition-all rounded-lg mx-2 flex items-center gap-2 border-2 border-primary/30 mt-2"
+                className="flex items-center gap-4 p-4 text-xl font-black bg-white/5 border border-white/10 rounded-2xl"
               >
-                <Phone className="h-5 w-5" />
-                0607056637
+                <div className="w-10 h-10 rounded-xl bg-accent/20 flex items-center justify-center">
+                  <Phone className="h-5 w-5 text-primary" />
+                </div>
+                06 07 05 66 37
               </a>
               
-              {/* Mobile Commander Button */}
-              <Button className="gradient-glow mx-4 mt-4 py-6 text-lg font-bold rounded-full" asChild>
+              <Button className="gradient-glow py-8 text-xl font-black rounded-2xl" asChild>
                 <Link href="/contact" onClick={() => setIsMenuOpen(false)}>
-                  Commander maintenant
+                  Commander Maintenant
                 </Link>
               </Button>
             </div>
-          </nav>
+          </motion.nav>
         )}
-      </div>
+      </AnimatePresence>
     </header>
   )
 }

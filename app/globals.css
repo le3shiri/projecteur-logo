@@ -148,6 +148,22 @@
 
   .glow-effect {
     box-shadow: 0 0 30px oklch(0.65 0.15 195 / 0.2), 0 0 60px oklch(0.60 0.18 220 / 0.15);
+    position: relative;
+  }
+
+  .glow-effect::after {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    background: linear-gradient(135deg, oklch(0.65 0.15 195 / 0.5), transparent, oklch(0.60 0.18 220 / 0.5));
+    border-radius: inherit;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+
+  .glow-effect:hover::after {
+    opacity: 1;
   }
 
   .glow-effect:hover {
@@ -209,5 +225,75 @@
 
   .floating-animation {
     animation: float 3s ease-in-out infinite;
+  }
+
+  .projection-beam {
+    position: absolute;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, oklch(0.65 0.15 195 / 0.1), transparent);
+    transform: rotate(-45deg);
+    pointer-events: none;
+    z-index: 1;
+    animation: beam-move 8s linear infinite;
+  }
+
+  @keyframes beam-move {
+    0% { transform: translate(-100%, -100%) rotate(-45deg); }
+    100% { transform: translate(100%, 100%) rotate(-45deg); }
+  }
+
+  .glass-morphism {
+    background: rgba(var(--background-rgb), 0.7);
+    backdrop-filter: blur(12px);
+    border: 1px solid oklch(0.65 0.15 195 / 0.1);
+  }
+
+  .reveal-text {
+    overflow: hidden;
+    position: relative;
+  }
+
+  .reveal-text::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: oklch(0.65 0.15 195);
+    transform-origin: left;
+    animation: reveal 1.5s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+  }
+
+  @keyframes reveal {
+    0% { transform: scaleX(1); }
+    100% { transform: scaleX(0); }
+  }
+
+  .shine-effect {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .shine-effect::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+      to right,
+      transparent,
+      rgba(255, 255, 255, 0.3),
+      transparent
+    );
+    transform: skewX(-25deg);
+    transition: 0.7s;
+  }
+
+  .shine-effect:hover::before {
+    left: 150%;
   }
 }
