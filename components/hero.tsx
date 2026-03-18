@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { ArrowLeft, Sparkles, Zap, Star, ShieldCheck, CheckCircle2, Play, Check, Camera, Image as LucideImage, Clock, Truck, Award, Palette } from "lucide-react"
+import { ArrowLeft, Sparkles, Zap, Star, ShieldCheck, CheckCircle2, Play, Check, Camera, Image as LucideImage, Clock, Truck, Award, Palette, Target, CloudRain, RotateCcw, Thermometer } from "lucide-react"
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { useState, useEffect } from "react"
@@ -22,10 +22,14 @@ const showcaseImages = [
 ]
 
 const mainAdvantages = [
-    { icon: Zap, text: "إضاءة 4K فائقة الوضوح", desc: "أقوى LED في السوق" },
-    { icon: Palette, text: "تصميم شعارك مجاناً", desc: "نجهز هويتك للاحترافية" },
-    { icon: ShieldCheck, text: "ضمان استبدال سنتين", desc: "دعم فني مضمون 100%" },
-    { icon: Clock, text: "توصيل سريع بالمغرب", desc: "استلم في 24/48 ساعة" },
+    {icon: Target, text: "مدى إسقاط من 5 إلى 70m", desc: "وضوح تام على مسافات بعيدة" },
+    { icon: ShieldCheck, text: "ضمان لمدة 3 سنوات", desc: "راحة بال مطلقة ودعم فني" },
+    { icon: CloudRain, text: "مقاومة للماء IP65", desc: "صامد أمام جميع التقلبات الجوية" },
+    { icon: Clock, text: "عمر 10 سنوات و3 أشهر", desc: "أداء مستدام وعمر افتراضي طويل" },
+    { icon: RotateCcw, text: "تحكم في الدوران عن بُعد", desc: "تغيير اتجاه الشعار بضغطة زر" },
+    { icon: Thermometer, text: "تتحمل من -25°C إلى +60°C", desc: "تعمل بكفاءة في أقسى الظروف" },
+    { icon: Zap, text: "تركيب سهل وسريع", desc: "جاهز للعمل في دقائق معدودة" },
+    { icon: Truck, text: "توصيل سريع بالمغرب", desc: "استلم طلبك خلال 24/48 ساعة" },
 ]
 
 export function Hero() {
