@@ -144,9 +144,9 @@ export function ContactForm({ preselectedProduct }: ContactFormProps) {
         body: JSON.stringify(web3formsData),
       })
 
-      const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwF37NQlxhxMtpxfFgIoBRoy-BTd2J6TFFZ3Xh_-qDH-UburxgQNNCNj4yH-E_vRuajAA/exec"
-
-      if (GOOGLE_SCRIPT_URL) {
+      let googleDriveUrl = ""
+      
+      try {
         const sheetData = {
           date: new Date().toLocaleString('fr-FR'),
           fullName,
@@ -162,12 +162,20 @@ export function ContactForm({ preselectedProduct }: ContactFormProps) {
           logoFileType: logoFileType
         }
 
-        await fetch(GOOGLE_SCRIPT_URL, {
+        const googleResponse = await fetch('/api/save-to-google', {
           method: 'POST',
-          mode: 'no-cors',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(sheetData),
         })
+
+        if (googleResponse.ok) {
+          const result = await googleResponse.json()
+          if (result.file) {
+            googleDriveUrl = result.file
+          }
+        }
+      } catch (error) {
+        console.error('Google Sheets saving error:', error)
       }
 
       if (product) {
@@ -193,6 +201,7 @@ ${additionalProductsList ? `*إضافات:* ${additionalProductsList}\n` : ''}
 *العنوان:* ${address}
 ${message ? `\n*ملاحظات:* ${message}` : ''}
 ${logoFileName ? `\n*مرفق شعار:* نعم (${logoFileName})` : ''}
+${googleDriveUrl ? `\n*رابط الشعار:* ${googleDriveUrl}` : ''}
 `
       
       const whatsappUrl = `https://wa.me/${waPhoneNumber}?text=${encodeURIComponent(waMessage)}`
