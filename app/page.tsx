@@ -39,11 +39,12 @@ export default function Home() {
       </section>
 
       <Gallery />
+      <ContactForm />
 
       <Benefits />
       <HowToUse />
       <HowItWorks />
-      <ContactForm />
+      
       <Footer />
     </main>
   )
