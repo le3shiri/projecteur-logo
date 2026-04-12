@@ -47,7 +47,7 @@ export function Hero() {
                 
                 {/* Visual Image Grid - Mobile Horizontal Scroll / Desktop Grid */}
                 <div className="relative group">
-                    <div className="flex md:grid md:grid-cols-5 gap-3 h-[300px] md:h-[400px] overflow-x-auto md:overflow-visible scrollbar-hide snap-x px-2 pb-4">
+                    <div className="flex md:grid md:grid-cols-3 gap-1  h-[400px] md:h-[400px] overflow-x-auto md:overflow-visible scrollbar-hide snap-x px-2 pb-4 object-contain object-center">
                         {showcaseImages.slice(0, 6).map((img, i) => (
                             <motion.div
                                 key={i}
