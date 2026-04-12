@@ -258,42 +258,7 @@ ${googleDriveUrl ? `\n*رابط الشعار:* ${googleDriveUrl}` : ''}
         <div className="grid lg:grid-cols-12 gap-12">
           
           {/* Contact Info Column */}
-          <motion.div variants={itemVariants} className="lg:col-span-4 space-y-6">
-            <h3 className="text-2xl font-bold tracking-tight">معلومات الاتصال</h3>
-            
-            <div className="grid gap-4">
-              {[
-                { icon: Phone, label: "الهاتف", value: "06 07 05 66 37", href: "tel:0607056637", color: "text-primary", gradient: "from-primary/10 to-transparent", dir: "ltr" },
-                { icon: Mail, label: "البريد الإلكتروني", value: "contact@projecteurlogo.com", href: "mailto:Projecteurlogo1@gmail.com", color: "text-accent-foreground", gradient: "from-accent/10 to-transparent", dir: "ltr" }
-              ].map((item, i) => (
-                <div key={i} className="group relative p-6 rounded-2xl bg-secondary/20 backdrop-blur-md border border-border hover:border-primary/50 transition-all duration-300 overflow-hidden shadow-sm">
-                  <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
-                  <div className="relative flex items-center gap-4 z-10">
-                    <div className={`w-12 h-12 rounded-xl bg-background flex items-center justify-center shadow-sm group-hover:scale-105 group-hover:-rotate-3 transition-transform duration-300 border border-border ${item.color}`}>
-                       <item.icon className="h-5 w-5" />
-                    </div>
-                    <div>
-                      <p className="text-xs font-semibold text-muted-foreground uppercase tracking-widest mb-0.5">{item.label}</p>
-                      <a href={item.href} dir={item.dir} className="text-lg font-bold group-hover:text-primary transition-colors inline-block">{item.value}</a>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div className="p-6 mt-6 rounded-2xl bg-primary/5 border border-primary/20 relative overflow-hidden group shadow-sm">
-               <div className="absolute -top-6 -right-6 p-2 opacity-10 group-hover:rotate-45 group-hover:scale-125 transition-all duration-700">
-                 <Sparkles className="h-24 w-24 text-primary" />
-               </div>
-               <div className="relative z-10 w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center mb-4 border border-primary/20">
-                 <CheckCircle2 className="w-5 h-5 text-primary" />
-               </div>
-               <h4 className="text-xl font-bold mb-2 text-foreground">خدمة ممتازة</h4>
-               <p className="text-sm font-medium text-muted-foreground leading-relaxed">
-                 مرافقة شخصية من الألف إلى الياء. نقوم بتحسين تصميمك مجانًا لضمان جودة الإسقاط.
-               </p>
-            </div>
-          </motion.div>
+          
 
           {/* Form Column */}
           <motion.div variants={itemVariants} className="lg:col-span-8">
@@ -527,6 +492,7 @@ ${googleDriveUrl ? `\n*رابط الشعار:* ${googleDriveUrl}` : ''}
               </CardContent>
             </Card>
           </motion.div>
+          
         </div>
       </motion.div>
     </section>

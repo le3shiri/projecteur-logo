@@ -37,9 +37,10 @@ export default function Home() {
           <ProductsGrid />
         </div>
       </section>
+          <ContactForm />
 
       <Gallery />
-      <ContactForm />
+      
 
       <Benefits />
       <HowToUse />

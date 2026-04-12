@@ -25,7 +25,7 @@ export interface Product {
 export const products: Product[] = [
   {
     id: "25w-fixe",
-    name: "جهاز عرض ثابت 25W",
+    name: "Projecteur Logo 25 W Fix",
     power: "25W",
     distance: "5m",
     usage: "المساحات الصغيرة، واجهات العرض، المكاتب",
@@ -66,7 +66,7 @@ export const products: Product[] = [
   },
   {
     id: "35w-fixe",
-    name: "جهاز عرض ثابت 35W",
+    name: "Projecteur Logo 35 W Fix",
     power: "35W",
     distance: "11m",
     usage: "الواجهات، المساحات الخارجية، الجدران الكبيرة",
@@ -108,7 +108,7 @@ export const products: Product[] = [
   },
   {
     id: "35w-rotatif",
-    name: "جهاز عرض دوار 35W",
+    name: "Projecteur Logo 35 W Rotatif",
     power: "35W",
     distance: "11m",
     usage: "الواجهات والمساحات الخارجية مع تأثير ديناميكي",
@@ -151,7 +151,7 @@ export const products: Product[] = [
   },
   {
     id: "55w-rotatif",
-    name: "جهاز عرض دوار 55W",
+    name: "Projecteur Logo 55 W Rotatif",
     power: "55W",
     distance: "20m",
     usage: "المسافات البعيدة، الفعاليات، اللافتات الإرشادية",
