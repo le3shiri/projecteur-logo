@@ -386,7 +386,7 @@ ${googleDriveUrl ? `\n*رابط الشعار:* ${googleDriveUrl}` : ''}
                        ))}
                     </div>
 
-                    <div className="space-y-2">
+                    {/* <div className="space-y-2">
                       <Label htmlFor="message" className="text-sm font-semibold">ملاحظات وتخصيص (اختياري)</Label>
                       <Textarea
                         id="message"
@@ -394,7 +394,7 @@ ${googleDriveUrl ? `\n*رابط الشعار:* ${googleDriveUrl}` : ''}
                         placeholder="تفاصيل الحدث، معلومات إضافية..."
                         className="rounded-xl p-4 bg-background border-input focus:ring-2 focus:ring-primary/50 transition-all font-medium text-base placeholder:text-muted-foreground/60 min-h-[120px] resize-y text-right"
                       />
-                    </div>
+                    </div> */}
                   </div>
 
                   {/* Step 3: Logo Upload */}
